@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SiswaRequest;
 use App\Model\Siswa;
-use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
@@ -35,9 +35,14 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
+
+        Siswa::create($data);
+
+        return redirect()->routes('siswa.index')->with('status', 'Berhasil di Simpan !');
     }
 
     /**

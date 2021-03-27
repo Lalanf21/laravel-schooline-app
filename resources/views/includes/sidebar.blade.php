@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="">EL</a>
+            <a href="">SCHL</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header ">Dashboard</li>

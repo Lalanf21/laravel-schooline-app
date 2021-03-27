@@ -17,7 +17,7 @@
                     <table id="example" class="table align-items-center table-flush">
                         <thead class="thead-dark">
                             <tr class="text-center">
-                                <th scope="col">No</th>
+                                <th scope="col">#</th>
                                 <th scope="col">NISN</th>
                                 <th scope="col">Nama Siswa</th>
                                 <th scope="col">Tahun pelajaran</th>
@@ -31,7 +31,7 @@
                         @forelse($siswa as $key => $value)
                             <tr class="text-center">
                                 <th scope="row">
-                                    {{ $value->iteration }}
+                                    {{ $loop->iteration }}
                                 </th>
                                 <th>
                                     {{ $value->nisn }}
@@ -43,7 +43,11 @@
                                     {{ $value->tgl_lahir }}
                                 </td>
                                 <td>
-                                    <i class="fas fa-times"></i>
+                                    @if($value->is_active == '1')
+                                        <i class="fas fa-check"></i>
+                                    @else
+                                        <i class="fas fa-times"></i>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('siswa.show', $value->id_siswa) }}" class="btn btn-success">Detail</a>

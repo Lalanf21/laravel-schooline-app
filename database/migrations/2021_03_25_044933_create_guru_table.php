@@ -15,6 +15,7 @@ class CreateGuruTable extends Migration
     {
         Schema::create('guru', function (Blueprint $table) {
             $table->id('id_guru');
+            $table->softDeletes();
             $table->timestamps();
             $table->string('nip',10);
             $table->string('nama');
