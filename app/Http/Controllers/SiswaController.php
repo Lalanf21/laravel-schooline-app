@@ -42,7 +42,7 @@ class SiswaController extends Controller
 
         Siswa::create($data);
 
-        return redirect()->routes('siswa.index')->with('status', 'Berhasil di Simpan !');
+        return redirect()->route('siswa.index')->with('status', 'Berhasil di Simpan !');
     }
 
     /**
@@ -53,7 +53,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        //
+        return view('pages.siswa.detail_siswa', compact('siswa'));
     }
 
     /**
@@ -64,7 +64,7 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+        return view('pages.siswa.form_edit', compact('siswa'));
     }
 
     /**

@@ -31,7 +31,6 @@ class SiswaRequest extends FormRequest
             'tahun_ajaran' => 'required|max:10',
             'foto' => 'required|mimes:jpg,bmp,png',
             'password' => 'required',
-            'price' => 'required|integer',
         ];
     }
 

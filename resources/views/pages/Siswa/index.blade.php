@@ -10,6 +10,18 @@
                 Data Siswa</a>
         </div>
     </div>
+    @if (session('status'))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('status') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="container bg-white p-4" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px">
@@ -40,21 +52,23 @@
                                     {{ $value->nama }}
                                 </td>
                                 <td>
-                                    {{ $value->tgl_lahir }}
+                                    {{ $value->tahun_ajaran }}
                                 </td>
                                 <td>
                                     @if($value->is_active == '1')
-                                        <i class="fas fa-check"></i>
+                                        <i class="fas fa-check text-success"></i>
                                     @else
-                                        <i class="fas fa-times"></i>
+                                        <i class="fas fa-times text-danger"></i>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('siswa.show', $value->id_siswa) }}" class="btn btn-success">Detail</a>
+                                    <a href="{{ route('siswa.show', $value->id_siswa) }}" class="btn btn-light">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('siswa.edit',$value->id_siswa) }}" class="btn btn-info">Update</a>
-                                    <a href="" class="btn btn-danger remove">Delete</a>
+                                    <a href="{{ route('siswa.edit',$value->id_siswa) }}" class="btn btn-warning"> <i class="fas fa-edit"></i> Update</a>
+                                    <a href="" class="btn btn-danger remove"> <i class="fas fa-trash"></i> Delete</a>
                                 </td>
                             </tr>
                         @empty
