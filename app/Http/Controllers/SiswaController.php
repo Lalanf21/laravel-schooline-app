@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SiswaRequest;
 use App\Model\Siswa;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\VarDumper\VarDumper;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $siswa = Siswa::all();
@@ -19,74 +17,59 @@ class SiswaController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('pages.Siswa.form_add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(SiswaRequest $request)
     {
         $data = $request->all();
         $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
+        $data['password'] = Hash::make($request->password);
 
         Siswa::create($data);
 
         return redirect()->route('siswa.index')->with('status', 'Berhasil di Simpan !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Mode\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
     public function show(Siswa $siswa)
     {
         return view('pages.siswa.detail_siswa', compact('siswa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Mode\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Siswa $siswa)
     {
         return view('pages.siswa.form_edit', compact('siswa'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mode\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Siswa::findOrFail($id);
+        $data = $request->all();
+        
+        // cek apakah ada update foto
+        if ($request->hasFile('foto')) {
+            $file = 'storage/'.$item->foto;
+            if (is_file($file)) {
+                unlink($file);
+            }
+        $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
+        }
+        // dd($data);
+        $item->update($data);
+        return redirect()->route('siswa.index')->with('status', 'Berhasil di Update !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Mode\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Siswa $siswa)
+    public function destroy($id)
     {
-        //
+        $item = Siswa::findOrFail($id);
+        $file = 'storage/' . $item->foto;
+        if (is_file($file)) {
+            unlink($file);
+        }
+
+        $item->delete();
+        return redirect()->route('siswa.index')->with('status', 'Berhasil di Hapus !');
     }
 }

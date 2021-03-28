@@ -23,7 +23,7 @@ class CreateSiswaTable extends Migration
             $table->integer('kelas');
             $table->string('tahun_ajaran',10);
             $table->string('password');
-            $table->string('is_active', 1);
+            $table->string('is_active', 1)->default('1');
             $table->string('foto');
 
         });

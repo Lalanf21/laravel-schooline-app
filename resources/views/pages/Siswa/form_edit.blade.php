@@ -16,12 +16,12 @@
     </a>
     <div id="detail" class="card card-success">
         <div class="card-body">
-            <form method="POST" action="{{ route('siswa.update', $siswa->id_siswa) }}" enctype="multipart/form-data">
-                @csrf
+            <form method="POST" action="{{ route('siswa.update',$siswa->id_siswa) }}" enctype="multipart/form-data">
                 @method('put')
+                @csrf
                 <div class="form-group">
                     <label for="nisn">NISN</label>
-                    <input id="nisn" type="text" name="nisn" oninput="fill()" value="{{ $siswa->nisn }}" class="form-control @error('nisn') is-invalid @enderror">
+                    <input id="nisn" type="text" name="nisn" value="{{ $siswa->nisn }}" class="form-control @error('nisn') is-invalid @enderror">
                     @error('nisn')
                     <div class="text-muted">{{ $message }}</div>
                     @enderror
@@ -52,11 +52,11 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     @elseif($siswa->kelas === '11')
+                        <option value="10">10</option>
                         <option value="11" selected>11</option>
-                        <option value="11">11</option>
                         <option value="12">12</option>
                     @else
-                        <option value="12">10</option>
+                        <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12" selected>12</option>
                     @endif
@@ -77,6 +77,7 @@
                 <div class="row">
                     <div class="form-group col-12">
                         <label>Foto</label>
+                        <img src="{{ url('storage/'.$siswa->foto) }}" alt="{{ $siswa->nama }}" class="img-thumbnail img-responsive" width="150">
                         <input type="file" name="foto" id="foto" value="{{ old('foto') }}" class="form-control @error('name') is-invalid @enderror">
                         @error('foto')
                         <div class="text-muted">{{ $message }}</div>
@@ -86,20 +87,22 @@
 
                 <div class="row">
                     <div class="form-group col-12">
-                        <label class="custom-switch">
-                            <input type="checkbox" name="is_active" class="custom-switch-input" active>
-                            <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Aktif ?</span>
-                        </label>
+                        <label>Aktif ?</label>
+                        <select name="is_active" class="form-control">
+                        @if($siswa->is_active == '1')
+                            <option value="1" selected >ya</option>
+                            <option value="0">tidak</option>
+                        @else
+                            <option value="0" selected>tidak</option>
+                            <option value="1">ya</option>
+                        @endif
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <a href="{{ route('siswa.create') }}" class="btn btn-danger btn-lg">
-                        <i class="fas fa-undo"></i> Reset
-                    </a>
-                    <button type="submit" class="btn btn-success btn-lg ">
-                        <i class="fas fa-save"></i> Simpan
+                    <button type="submit" class="btn btn-warning btn-lg ">
+                        <i class="fas fa-edit"></i> Update
                     </button>
                 </div>
 

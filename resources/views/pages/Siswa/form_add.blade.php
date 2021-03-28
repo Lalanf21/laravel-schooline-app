@@ -31,7 +31,7 @@
 
                 <div class="form-group">
                     <label for="nama">nama</label>
-                    <input id="nama" type="nama" name="nama" value="{{ old('name') }}" class="form-control @error('nama') is-invalid @enderror">
+                    <input id="nama" type="nama" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror">
                     @error('nama')
                         <div class="text-muted">{{ $message }}</div>
                     @enderror
@@ -48,6 +48,7 @@
                 <div class="form-group">
                     <label for="kelas">Kelas</label>
                     <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
+                        <option>--PILIH--</option>
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>

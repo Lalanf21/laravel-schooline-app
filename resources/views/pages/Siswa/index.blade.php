@@ -67,8 +67,14 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('siswa.edit',$value->id_siswa) }}" class="btn btn-warning"> <i class="fas fa-edit"></i> Update</a>
-                                    <a href="" class="btn btn-danger remove"> <i class="fas fa-trash"></i> Delete</a>
+                                    <a href="{{ route('siswa.edit',$value->id_siswa) }}" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>
+                                    <form action="{{ route('siswa.destroy', $value->id_siswa) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button onclick="return confirm('Anda yakin ?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+
+                                    </form>
+
                                 </td>
                             </tr>
                         @empty
