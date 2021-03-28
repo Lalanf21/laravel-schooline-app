@@ -6,7 +6,7 @@ use App\Http\Requests\SiswaRequest;
 use App\Model\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\VarDumper\VarDumper;
+use DataTables;
 
 class SiswaController extends Controller
 {
@@ -71,5 +71,30 @@ class SiswaController extends Controller
 
         $item->delete();
         return redirect()->route('siswa.index')->with('status', 'Berhasil di Hapus !');
+    }
+
+    public function list_siswa()
+    {
+        $item = Siswa::all();
+        return DataTables::of($item)
+            ->rawColumns(['action','detail'])
+            ->addIndexColumn()
+            ->addColumn('action', function ($item) {
+                $action = '<a href="/siswa/'.$item->id_siswa.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
+                $action .= ' ||<form action="/siswa/'.$item->id_siswa.'" method="post" class="d-inline">'
+                .csrf_field().method_field("delete").'
+                <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
+                return $action;
+            })
+            // ->addColumn('action', function ($item) {
+            //     $action = '<a class="text-primary" href="/siswa/' . $item->id_siswa . '/edit">Edit</a>';
+            //     $action .= ' | <a class="text-danger" href="/siswa/delete/' . $item->id_siswa . '">Hapus</a>';
+            //     return $action;
+            // })
+            ->addColumn('detail', function ($item) {
+                $detail = '<a href="/siswa/'.$item->id_siswa.'" class="btn btn-light"><i class="fas fa-eye"></i></a>';
+                return $detail;
+            })
+            ->make(true);
     }
 }
