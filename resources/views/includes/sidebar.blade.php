@@ -27,9 +27,8 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-chalkboard-teacher"></i>
                     <span>Guru</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="">Data Guru</a>
+                    <li><a class="nav-link" href="{{ route('guru.index') }}">Data Guru</a>
                     </li>
-                    <li><a class="nav-link" href="">Tambah Data Guru</a>
                     </li>
                 </ul>
             </li>

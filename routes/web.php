@@ -15,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','DashboardController@index')->name('dashboard');
 
+// route siswa
 Route::get('/siswa/list', 'SiswaController@list_siswa')->name('list-siswa');
 Route::resource('siswa','SiswaController');
+
+// route guru
+Route::get('/guru/list', 'GuruController@list_guru')->name('list-guru');
+Route::resource('guru','GuruController');

@@ -12,8 +12,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Siswa::all();
-        return view('pages.Siswa.index', compact('siswa'));;
+        return view('pages.Siswa.index');;
 
     }
 
@@ -86,11 +85,6 @@ class SiswaController extends Controller
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;
             })
-            // ->addColumn('action', function ($item) {
-            //     $action = '<a class="text-primary" href="/siswa/' . $item->id_siswa . '/edit">Edit</a>';
-            //     $action .= ' | <a class="text-danger" href="/siswa/delete/' . $item->id_siswa . '">Hapus</a>';
-            //     return $action;
-            // })
             ->addColumn('detail', function ($item) {
                 $detail = '<a href="/siswa/'.$item->id_siswa.'" class="btn btn-light"><i class="fas fa-eye"></i></a>';
                 return $detail;
