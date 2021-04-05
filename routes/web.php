@@ -22,3 +22,7 @@ Route::resource('siswa','SiswaController');
 // route guru
 Route::get('/guru/list', 'GuruController@list_guru')->name('list-guru');
 Route::resource('guru','GuruController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
