@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiswaRequest;
-use App\Model\Siswa;
+use App\Model\SiswaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use DataTables;
@@ -12,13 +12,13 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        return view('pages.Siswa.index');;
+        return view('admin.pages.pengaturan.siswa.index');;
 
     }
 
     public function create()
     {
-        return view('pages.Siswa.form_add');
+        return view('admin.pages.pengaturan.siswa.form_add');
     }
 
     public function store(SiswaRequest $request)
@@ -27,24 +27,24 @@ class SiswaController extends Controller
         $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
         $data['password'] = Hash::make($request->password);
 
-        Siswa::create($data);
+        SiswaModel::create($data);
 
-        return redirect()->route('siswa.index')->with('status', 'Berhasil di Simpan !');
+        return redirect()->route('admin-panel.siswa.index')->with('status', 'Berhasil di Simpan !');
     }
 
-    public function show(Siswa $siswa)
+    public function show(SiswaModel $siswa)
     {
-        return view('pages.siswa.detail_siswa', compact('siswa'));
+        return view('admin.pages.pengaturan.siswa.detail_siswa', compact('siswa'));
     }
 
-    public function edit(Siswa $siswa)
+    public function edit(SiswaModel $siswa)
     {
-        return view('pages.siswa.form_edit', compact('siswa'));
+        return view('admin.pages.pengaturan.siswa.form_edit', compact('siswa'));
     }
 
     public function update(Request $request, $id)
     {
-        $item = Siswa::findOrFail($id);
+        $item = SiswaModel::findOrFail($id);
         $data = $request->all();
         
         // cek apakah ada update foto
@@ -57,36 +57,36 @@ class SiswaController extends Controller
         }
         // dd($data);
         $item->update($data);
-        return redirect()->route('siswa.index')->with('status', 'Berhasil di Update !');
+        return redirect()->route('admin-panel.siswa.index')->with('status', 'Berhasil di Update !');
     }
 
     public function destroy($id)
     {
-        $item = Siswa::findOrFail($id);
+        $item = SiswaModel::findOrFail($id);
         $file = 'storage/' . $item->foto;
         if (is_file($file)) {
             unlink($file);
         }
 
         $item->delete();
-        return redirect()->route('siswa.index')->with('status', 'Berhasil di Hapus !');
+        return redirect()->route('admin-panel.siswa.index')->with('status', 'Berhasil di Hapus !');
     }
 
     public function list_siswa()
     {
-        $item = Siswa::all();
+        $item = SiswaModel::all();
         return DataTables::of($item)
             ->rawColumns(['action','detail'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/siswa/'.$item->id_siswa.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
-                $action .= ' ||<form action="/siswa/'.$item->id_siswa.'" method="post" class="d-inline">'
+                $action = '<a href="/admin-panel/siswa/'.$item->id_siswa.'/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
+                $action .= ' ||<form action="/admin-panel/siswa/'.$item->id_siswa.'" method="post" class="d-inline">'
                 .csrf_field().method_field("delete").'
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;
             })
             ->addColumn('detail', function ($item) {
-                $detail = '<a href="/siswa/'.$item->id_siswa.'" class="btn btn-light"><i class="fas fa-eye"></i></a>';
+                $detail = '<a href="/admin-panel/siswa/'.$item->id_siswa.'" class="btn btn-light"><i class="fas fa-eye"></i></a>';
                 return $detail;
             })
             ->make(true);

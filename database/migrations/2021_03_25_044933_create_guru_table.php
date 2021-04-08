@@ -15,13 +15,11 @@ class CreateGuruTable extends Migration
     {
         Schema::create('guru', function (Blueprint $table) {
             $table->id('id_guru');
-            $table->softDeletes();
             $table->timestamps();
             $table->string('nip',10);
-            $table->string('nama');
+            $table->string('nama',100);
             $table->string('no_hp',12);
-            $table->string('nama_mapel',50);
-            $table->string('password');
+            $table->string('nama_mapel',20);
             $table->string('is_active',1);
             
         });

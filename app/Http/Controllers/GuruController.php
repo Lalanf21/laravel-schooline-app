@@ -12,12 +12,12 @@ class GuruController extends Controller
 {
     public function index()
     {
-        return view('pages.guru.index');
+        return view('admin.pages.pengaturan.guru.index');
     }
 
     public function create()
     {
-        return view('pages.guru.form_add');
+        return view('admin.pages.pengaturan.guru.form_add');
     }
 
     public function store(guruRequest $request)
@@ -26,7 +26,7 @@ class GuruController extends Controller
         $data['password'] = Hash::make($request->password);
 
         guruModel::create($data);
-        return redirect()->route('guru.index')->with('status', 'Berhasil di Simpan !');
+        return redirect()->route('admin-panel.guru.index')->with('status', 'Berhasil di Simpan !');
     }
 
     public function show(guruModel $guruModel)
@@ -37,7 +37,7 @@ class GuruController extends Controller
     public function edit($id)
     {
         $item = guruModel::findOrFail($id);
-        return view('pages.guru.form_edit', compact('item'));
+        return view('admin.pages.pengaturan.guru.form_edit', compact('item'));
     }
 
     public function update(Request $request, $id)
@@ -46,7 +46,7 @@ class GuruController extends Controller
         $data = $request->all();
 
         $item->update($data);
-        return redirect()->route('guru.index')->with('status', 'Berhasil di Update !');
+        return redirect()->route('admin-panel.guru.index')->with('status', 'Berhasil di Update !');
     }
 
     public function destroy($id)
@@ -54,7 +54,7 @@ class GuruController extends Controller
         $item = guruModel::findOrFail($id);
 
         $item->delete();
-        return redirect()->route('guru.index')->with('status', 'Berhasil di Hapus !');
+        return redirect()->route('admin-panel.guru.index')->with('status', 'Berhasil di Hapus !');
     }
 
     public function list_guru()
@@ -65,8 +65,8 @@ class GuruController extends Controller
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/guru/' . $item->id_guru . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
-                $action .= ' ||<form action="/guru/' . $item->id_guru . '" method="post" class="d-inline">'
+                $action = '<a href="/admin-panel/guru/' . $item->id_guru . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
+                $action .= ' ||<form action="/admin-panel/guru/' . $item->id_guru . '" method="post" class="d-inline">'
                 . csrf_field() . method_field("delete") . '
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','DashboardController@index')->name('dashboard');
+// Route::get('/','DashboardController@index')->name('dashboard');
 
-// route siswa
-Route::get('/siswa/list', 'SiswaController@list_siswa')->name('list-siswa');
-Route::resource('siswa','SiswaController');
+Auth::routes(['reset' => false]);
 
-// route guru
-Route::get('/guru/list', 'GuruController@list_guru')->name('list-guru');
-Route::resource('guru','GuruController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

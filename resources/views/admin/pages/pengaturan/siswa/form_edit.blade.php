@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title','Edit Siswa')
 
 @section('content')
@@ -11,12 +11,12 @@
         </div>
     </div>
 
-    <a href="{{ route('siswa.index') }}" class="btn btn-primary btn-lg mb-2">
+    <a href="{{ route('admin-panel.siswa.index') }}" class="btn btn-primary btn-lg mb-2">
         <i class="fas fa-arrow-left fa-2x"></i>
     </a>
     <div id="detail" class="card card-success">
         <div class="card-body">
-            <form method="POST" action="{{ route('siswa.update',$siswa->id_siswa) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin-panel.siswa.update',$siswa->id_siswa) }}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title','Add Guru')
 
 @section('content')
@@ -13,12 +13,12 @@
         </div>
     </div>
 
-    <a href="{{ route('guru.index') }}" class="btn btn-primary btn-lg mb-2">
+    <a href="{{ route('admin-panel.guru.index') }}" class="btn btn-primary btn-lg mb-2">
         <i class="fas fa-arrow-left fa-2x"></i>
     </a>
     <div id="detail" class="card card-success">
         <div class="card-body">
-            <form method="POST" action="{{ route('guru.store') }}">
+            <form method="POST" action="{{ route('admin-panel.guru.store') }}">
             @csrf
                 <div class="form-group">
                     <label for="nip">NIP</label>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="form-group">
-                    <a href="{{ route('guru.create') }}" class="btn btn-danger btn-lg">
+                    <a href="{{ route('admin-panel.guru.create') }}" class="btn btn-danger btn-lg">
                         <i class="fas fa-undo"></i> Reset
                     </a>
                     <button type="submit" class="btn btn-success btn-lg ">

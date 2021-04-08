@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -42,25 +42,51 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapAdminRoutes();
+
+        $this->mapSiswaRoutes();
+
+        $this->mapGuruRoutes();
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
+        
         //
     }
 
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:admin')
+            ->prefix('admin-panel')
+            ->name('admin-panel.')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapGuruRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:guru')
+            ->prefix('guru-panel')
+            ->name('guru-panel.')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/guru.php'));
+    }
+
+    protected function mapSiswaRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:siswa')
+            ->prefix('siswa-panel')
+            ->name('siswa-panel.')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/siswa.php'));
     }
 
     /**

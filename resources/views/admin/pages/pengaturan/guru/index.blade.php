@@ -1,12 +1,12 @@
-@extends('layouts.master')
-@section('title','Siswa')
+@extends('admin.layouts.master')
+@section('title','Data guru')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Management Data Siswa</h2>
+            <h2 class="card-title" style="color: black;">Management Data guru</h2>
             <hr>
-            <a href="{{ route('siswa.create') }}" class="btn btn-primary">Tambah Data Siswa</a>
+            <a href="{{ route('admin-panel.guru.create') }}" class="btn btn-primary">Tambah Data guru</a>
         </div>
     </div>
     @if (session('status'))
@@ -25,15 +25,15 @@
         <div class="col-md-12">
             <div class="container bg-white p-4" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px">
                 <div class="table-responsive">
-                    <table id="siswa" class="table align-items-center table-flush">
+                    <table id="guru" class="table align-items-center table-flush">
                         <thead class="thead-dark">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">NISN</th>
-                                <th scope="col">Nama Siswa</th>
-                                <th scope="col">Tahun pelajaran</th>
+                                <th scope="col">NIP</th>
+                                <th scope="col">Nama guru</th>
+                                <th scope="col">No HP</th>
+                                <th scope="col">Mata Pelajaran</th>
                                 <th scope="col">Akun Aktif</th>
-                                <th scope="col">Detail</th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -51,37 +51,35 @@
 @push('after-script')
 <script>
     $(function() {
-        $('#siswa').DataTable({
+        $('#guru').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('list-siswa') }}",
+            , ajax: "{{ @route('admin-panel.list-guru') }}",
 
             columns: [
                 {
                     data: 'DT_RowIndex'
                 }, 
                 {
-                    data: 'nisn'
+                    data: 'nip'
                 }, 
                 {
                     data: 'nama'
                 }, 
                 {
-                    data: 'tahun_ajaran'
+                    data: 'no_hp'
+                },
+                {
+                    data: 'nama_mapel'
                 },
                 {
                     data: 'is_active'
                 },
                 {
-                    data: 'detail',
-                    orderable: false,
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: false, 
                     searchable: false
-                },
-                {
-                    data: 'action'
-                    , name: 'action'
-                    , orderable: false
-                    , searchable: false
                 }
             ]
         });

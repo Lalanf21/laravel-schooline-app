@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title','Edit Guru')
 
 @section('content')
@@ -13,12 +13,12 @@
         </div>
     </div>
 
-    <a href="{{ route('guru.index') }}" class="btn btn-primary btn-lg mb-2">
+    <a href="{{ route('admin-panel.guru.index') }}" class="btn btn-primary btn-lg mb-2">
         <i class="fas fa-arrow-left fa-2x"></i>
     </a>
     <div id="detail" class="card card-success">
         <div class="card-body">
-            <form method="POST" action="{{ route('guru.update',$item->id_guru) }}">
+            <form method="POST" action="{{ route('admin-panel.guru.update',$item->id_guru) }}">
             @method('put')
             @csrf
                 <div class="form-group">

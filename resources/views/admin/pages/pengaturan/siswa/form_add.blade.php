@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title','Add Siswa')
 
 @section('content')
@@ -13,12 +13,12 @@
         </div>
     </div>
 
-    <a href="{{ route('siswa.index') }}" class="btn btn-primary btn-lg mb-2">
+    <a href="{{ route('admin-panel.siswa.index') }}" class="btn btn-primary btn-lg mb-2">
         <i class="fas fa-arrow-left fa-2x"></i>
     </a>
     <div id="detail" class="card card-success">
         <div class="card-body">
-            <form method="POST" action="{{ route('siswa.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin-panel.siswa.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="form-group">
                     <label for="nisn">NISN</label>
@@ -84,7 +84,8 @@
                 </div>
 
                 <div class="form-group">
-                    <a href="{{ route('siswa.create') }}" class="btn btn-danger btn-lg">
+                    <a href="{{ route('admin-panel.siswa.create') }}" class="btn btn-danger btn-lg">
+
                         <i class="fas fa-undo"></i> Reset
                     </a>
                     <button type="submit" class="btn btn-success btn-lg ">
