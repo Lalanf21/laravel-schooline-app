@@ -4,22 +4,20 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SiswaModel extends Model
+class guruModel extends Model
 {
     protected $fillable = [
-        'id_jurusan',
-        'id_kelas',
+        'id_mapel',
         'nama',
-        'nisn',
+        'nip',
         'tgl_lahir',
-        'kelas',
+        'no_hp',
         'is_active',
         'foto',
         'created_at',
         'updated_at',
     ];
 
-    protected $table = 'siswa';
-    protected $primaryKey = 'id_siswa';
-
+    protected $table = 'guru';
+    protected $primaryKey = 'id_guru';
 }
