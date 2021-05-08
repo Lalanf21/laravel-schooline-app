@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view ('admin.pages.dashboard');
 })->name('dashboard');
 
@@ -11,5 +11,9 @@ Route::resource('siswa', 'SiswaController');
 // route pengaturan guru
 Route::get('/guru/list', 'GuruController@list_guru')->name('list-guru');
 Route::resource('guru', 'GuruController');
+
+// route pengaturan jurusan
+Route::get('/jurusan/list', 'JurusanController@list_jurusan')->name('list-jurusan');
+Route::resource('jurusan', 'JurusanController');
 
 ?>

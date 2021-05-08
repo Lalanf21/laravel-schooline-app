@@ -7,6 +7,7 @@
             <h2 class="card-title" style="color: black;">Management Data guru</h2>
             <hr>
             <a href="{{ route('admin-panel.guru.create') }}" class="btn btn-primary">Tambah Data guru</a>
+            <button class="btn btn-primary" id="modal-1">Launch Modal</button>
         </div>
     </div>
     @if (session('status'))
@@ -37,19 +38,23 @@
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
-
                     </table>
-                    
                 </div>
             </div>
         </div>
     </div>
+
+
 </section>
 
 @endsection
 
 @push('after-script')
 <script>
+"use strict";
+
+$("#modal-1").fireModal({body: 'Modal body text goes here.'});
+
     $(function() {
         $('#guru').DataTable({
             processing: true

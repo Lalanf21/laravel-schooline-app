@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/','DashboardController@index')->name('dashboard');
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 Auth::routes(['reset' => false]);
 
