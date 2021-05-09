@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('layouts.master')
 @section('title','Detail Siswa')
 @section('content')
 
@@ -50,9 +50,10 @@
                         <td> {{ $siswa->kelas }} </td>
                     </tr>
                     <tr>
-                        <td><p class="font-weight-bold">Password </p></td>
+                        <td><p class="font-weight-bold">jurusan </p></td>
                         <td>:</td>
-                        <td>Terenkripsi</td>
+                        <td>{{ $siswa->jurusan->nama }}</td>
+
                     </tr>
                     <tr>
                         <td><p class="font-weight-bold">Akun Aktif?</p></td>

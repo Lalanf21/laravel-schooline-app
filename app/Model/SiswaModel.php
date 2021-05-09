@@ -14,6 +14,7 @@ class SiswaModel extends Model
         'tgl_lahir',
         'kelas',
         'is_active',
+        'tahun_ajaran',
         'foto',
         'created_at',
         'updated_at',

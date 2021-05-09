@@ -14,7 +14,7 @@ class AddForeignKeysToNilai extends Migration
     public function up()
     {
         Schema::table('nilai', function (Blueprint $table) {
-            $table->foreign('id_tugas', 'id_tugas_index')->references('id_tugas')->on('tugas')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_tugas', 'id_tugas_fk_nilai')->references('id_tugas')->on('tugas')->onUpdate('CASCADE')->onDelete('RESTRICT');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignKeysToNilai extends Migration
     public function down()
     {
         Schema::table('nilai', function (Blueprint $table) {
-            $table->dropForeign('id_tugas_index');
+            $table->dropForeign('id_tugas_fk_nilai');
         });
     }
 }

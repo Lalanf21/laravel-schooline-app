@@ -14,7 +14,7 @@ class AddForeignKeysToTugas extends Migration
     public function up()
     {
         Schema::table('tugas', function (Blueprint $table) {
-            $table->foreign('id_ruang_belajar', 'id_ruang_belajar_index')->references('id_ruang_belajar')->on('ruang_belajar')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_ruang_belajar', 'id_ruang_belajar_fk_tugas')->references('id_ruang_belajar')->on('ruang_belajar')->onUpdate('CASCADE')->onDelete('RESTRICT');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignKeysToTugas extends Migration
     public function down()
     {
         Schema::table('tugas', function (Blueprint $table) {
-            $table->dropForeign('id_ruang_belajar_index');
+            $table->dropForeign('id_ruang_belajar_fk_tugas');
         });
     }
 }

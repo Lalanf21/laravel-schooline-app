@@ -14,9 +14,9 @@ class AddForeignKeysToSiswa extends Migration
     public function up()
     {
         Schema::table('siswa', function (Blueprint $table) {
-            $table->foreign('id_jurusan', 'id_jurusan_index')->references('id_jurusan')->on('jurusan')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_jurusan', 'id_jurusan_fk_siswa')->references('id_jurusan')->on('jurusan')->onUpdate('CASCADE')->onDelete('RESTRICT');
 
-            $table->foreign('id_kelas', 'id_kelas_index')->references('id_kelas')->on('kelas')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_kelas', 'id_kelas_fk_siswa')->references('id_kelas')->on('kelas')->onUpdate('CASCADE')->onDelete('RESTRICT');
             
         });
     }
@@ -29,8 +29,8 @@ class AddForeignKeysToSiswa extends Migration
     public function down()
     {
         Schema::table('siswa', function (Blueprint $table) {
-            $table->dropForeign('id_jurusan_index');
-            $table->dropForeign('id_kelas_index');
+            $table->dropForeign('id_jurusan_fk_siswa');
+            $table->dropForeign('id_kelas_fk_siswa');
         });
     }
 }

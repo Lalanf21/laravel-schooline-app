@@ -14,7 +14,7 @@ class AddForeignKeysToGuru extends Migration
     public function up()
     {
         Schema::table('guru', function (Blueprint $table) {
-            $table->foreign('id_mapel', 'id_mapel_index')->references('id_mapel')->on('mapel')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_mapel', 'id_mapel_fk_guru')->references('id_mapel')->on('mapel')->onUpdate('CASCADE')->onDelete('RESTRICT');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignKeysToGuru extends Migration
     public function down()
     {
         Schema::table('guru', function (Blueprint $table) {
-            $table->dropForeign('id_mapel_index');
+            $table->dropForeign('id_mapel_fk_guru');
         });
     }
 }

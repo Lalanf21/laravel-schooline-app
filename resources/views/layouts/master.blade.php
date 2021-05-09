@@ -9,7 +9,7 @@
 
     {{-- style --}}
     @stack('before-style')
-    @include('admin.includes.style')
+    @include('includes.style')
     @stack('after-style')
 
 </head>
@@ -18,8 +18,8 @@
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
-            @include('admin.includes.navbar')
-            @include('admin.includes.sidebar')
+            @include('includes.navbar')
+            @include('includes.sidebar')
 
             {{-- main content --}}
             <div class="main-content">
@@ -38,7 +38,7 @@
     </div>
 
     @stack('before-script')
-    @include('admin.includes.script')
+    @include('includes.script')
     @stack('after-script')
 
 

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('layouts.master')
 @section('title','Data guru')
 @section('content')
 <section class="section">
