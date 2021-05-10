@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\jurusanRequest;
 use App\model\jurusanModel;
-use Illuminate\Http\Request;
 use DataTables;
 
 class JurusanController extends Controller
@@ -25,36 +24,36 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $item = jurusanModel::findOrFail($id);
-        return view('admin.pages.pengaturan.guru.form_edit', compact('item'));
+        return view('admin.pages.pengaturan.jurusan.form_edit', compact('item'));
     }
 
-    public function update(Request $request, $id)
+    public function update(jurusanRequest $request, $id)
     {
-        $item = guruModel::findOrFail($id);
+        $item = jurusanModel::findOrFail($id);
         $data = $request->all();
 
         $item->update($data);
-        return redirect()->route('admin-panel.guru.index')->with('status', 'Berhasil di Update !');
+        return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Update !');
     }
 
     public function destroy($id)
     {
-        $item = guruModel::findOrFail($id);
+        $item = jurusanModel::findOrFail($id);
 
         $item->delete();
-        return redirect()->route('admin-panel.guru.index')->with('status', 'Berhasil di Hapus !');
+        return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Hapus !');
     }
 
-    public function list_guru()
+    public function list_jurusan()
     {
-        $item = guruModel::all();
+        $item = jurusanModel::all();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/admin-panel/guru/' . $item->id_guru . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
-                $action .= ' ||<form action="/admin-panel/guru/' . $item->id_guru . '" method="post" class="d-inline">'
+                $action = '<a href="/admin-panel/jurusan/' . $item->id_jurusan . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Edit</a>';
+                $action .= ' ||<form action="/admin-panel/jurusan/' . $item->id_jurusan . '" method="post" class="d-inline">'
                 . csrf_field() . method_field("delete") . '
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;

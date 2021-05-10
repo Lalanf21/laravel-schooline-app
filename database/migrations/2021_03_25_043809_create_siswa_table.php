@@ -21,7 +21,6 @@ class CreateSiswaTable extends Migration
             $table->string('nisn',10);
             $table->string('nama',100);
             $table->date('tgl_lahir');
-            $table->enum('kelas',['10','11','12']);
             $table->string('tahun_ajaran',10);
             $table->string('is_active', 1)->default('1');
             $table->string('foto');

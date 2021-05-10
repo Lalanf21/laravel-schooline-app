@@ -16,7 +16,6 @@ class CreateGuruTable extends Migration
         Schema::create('guru', function (Blueprint $table) {
             $table->id('id_guru');
             $table->timestamps();
-            $table->foreignId('id_mapel')->nullable()->index('id_mapel_index');
             $table->string('nip',10);
             $table->string('nama',100);
             $table->string('no_hp',12);

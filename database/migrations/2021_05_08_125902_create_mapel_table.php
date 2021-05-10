@@ -16,6 +16,7 @@ class CreateMapelTable extends Migration
         Schema::create('mapel', function (Blueprint $table) {
             $table->id('id_mapel');
             $table->timestamps();
+            $table->foreignId('id_guru')->nullable()->index('id_guru_index')->unsigned();
             $table->foreignId('id_kelas')->nullable()->index('id_kelas_index')->unsigned();
             $table->string('is_active',1);
             $table->string('nama_mapel',20);

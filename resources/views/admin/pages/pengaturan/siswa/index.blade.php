@@ -32,8 +32,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">NISN</th>
                                 <th scope="col">Nama Siswa</th>
-                                <th scope="col">Tahun pelajaran</th>
-                                <th scope="col">Akun Aktif</th>
+                                <th scope="col">Jurusan</th>
+                                <th scope="col">Kelas</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Option</th>
                             </tr>
@@ -72,7 +72,7 @@
                     data: 'tahun_ajaran'
                 },
                 {
-                    data: 'is_active'
+                    data: 'kelas.nama_kelas'
                 },
                 {
                     data: 'detail',

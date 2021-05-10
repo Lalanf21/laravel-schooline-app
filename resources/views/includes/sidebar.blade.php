@@ -20,8 +20,9 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin-panel.siswa.index') }}">Data Siswa</a></li>
                     <li><a class="nav-link" href="{{ route('admin-panel.guru.index') }}">Data Guru</a></li>
-                    <li><a class="nav-link" href="">Mata Pelajaran</a></li>
-                    <li><a class="nav-link" href="">Tahun Pelajaran</a></li>
+                    <li><a class="nav-link" href="{{ route('admin-panel.mapel.index') }}">Mata Pelajaran</a></li>
+
+                    <li><a class="nav-link" href="{{ route('admin-panel.kelas.index') }}">Kelas</a></li>
                     <li><a class="nav-link" href="{{ route('admin-panel.jurusan.index') }}">Jurusan</a></li>
 
                 </ul>

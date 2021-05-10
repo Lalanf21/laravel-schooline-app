@@ -21,8 +21,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $message = [
-            'exists' => 'NISN Kamu Tidak Terdaftar',
-            'confirmed' => 'NISN Kamu Tidak Terdaftar',
+            'exists' => 'Kamu Tidak Terdaftar',
+            'exists' => 'Kamu Tidak Terdaftar',
+            'confirmed' => 'Password tidak sama',
             'min' => 'Field :attribute minimal 5 karakter',
             'required' => 'Wajib di isi',
             'confirmed' => 'Password Tidak Sama',
@@ -31,7 +32,7 @@ class RegisterController extends Controller
         return Validator::make($data, 
         [
             'nisn' => ['required', 'string', 'max:10','exists:siswa,nisn'],
-            'nama' => ['required', 'string'],
+            'nama' => ['required', 'string', 'exists:siswa,nama'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
         ], $message);
     }
@@ -40,7 +41,7 @@ class RegisterController extends Controller
     {
         
         $user = user::create([
-            'nama' => $data['nisn'],
+            'nama' => $data['nama'],
             'nisn' => $data['nisn'],
             'password' => Hash::make($data['password']),
         ]);

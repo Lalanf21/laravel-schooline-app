@@ -26,9 +26,9 @@ class guruRequest extends FormRequest
         return [
             'nip' => 'required|max:12',
             'nama' => 'required|max:100',
+            'tgl_lahir' => 'required',
             'no_hp' => 'required|numeric',
-            'nama_mapel' => 'required',
-            'password' => 'required',
+            'foto' => 'required',
             'is_active' => 'required|in:0,1'
         ];
     }
@@ -40,6 +40,7 @@ class guruRequest extends FormRequest
             'max'  => 'Sudah Mencapai Maksimal Karakter !',
             'integer'  => 'Hanya boleh di input angka !',
             'numeric'  => 'Hanya boleh di input angka !',
+            'in'  => 'Pilih Option Dahulu !',
         ];
     }
 }

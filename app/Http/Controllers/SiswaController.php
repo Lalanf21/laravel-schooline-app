@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiswaRequest;
+use App\Model\jurusanModel;
+use App\Model\kelasModel;
 use App\Model\SiswaModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use DataTables;
 
 class SiswaController extends Controller
@@ -18,14 +19,15 @@ class SiswaController extends Controller
 
     public function create()
     {
-        return view('admin.pages.pengaturan.siswa.form_add');
+        $jurusan = jurusanModel::get();
+        $kelas = kelasModel::get();
+        return view('admin.pages.pengaturan.siswa.form_add',compact('jurusan','kelas'));
     }
 
     public function store(SiswaRequest $request)
     {
         $data = $request->all();
         $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
-        $data['password'] = Hash::make($request->password);
 
         SiswaModel::create($data);
 
@@ -39,7 +41,9 @@ class SiswaController extends Controller
 
     public function edit(SiswaModel $siswa)
     {
-        return view('admin.pages.pengaturan.siswa.form_edit', compact('siswa'));
+        $jurusan = jurusanModel::get();
+        $kelas = kelasModel::get();
+        return view('admin.pages.pengaturan.siswa.form_edit', compact('siswa','kelas','jurusan'));
     }
 
     public function update(Request $request, $id)
@@ -74,7 +78,7 @@ class SiswaController extends Controller
 
     public function list_siswa()
     {
-        $item = SiswaModel::all();
+        $item = SiswaModel::with('kelas')->get();
         return DataTables::of($item)
             ->rawColumns(['action','detail'])
             ->addIndexColumn()

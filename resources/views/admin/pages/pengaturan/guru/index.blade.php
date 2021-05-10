@@ -7,7 +7,6 @@
             <h2 class="card-title" style="color: black;">Management Data guru</h2>
             <hr>
             <a href="{{ route('admin-panel.guru.create') }}" class="btn btn-primary">Tambah Data guru</a>
-            <button class="btn btn-primary" id="modal-1">Launch Modal</button>
         </div>
     </div>
     @if (session('status'))
@@ -32,9 +31,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">NIP</th>
                                 <th scope="col">Nama guru</th>
-                                <th scope="col">No HP</th>
-                                <th scope="col">Mata Pelajaran</th>
                                 <th scope="col">Akun Aktif</th>
+                                <th scope="col">Detail</th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -51,10 +49,6 @@
 
 @push('after-script')
 <script>
-"use strict";
-
-$("#modal-1").fireModal({body: 'Modal body text goes here.'});
-
     $(function() {
         $('#guru').DataTable({
             processing: true
@@ -72,19 +66,18 @@ $("#modal-1").fireModal({body: 'Modal body text goes here.'});
                     data: 'nama'
                 }, 
                 {
-                    data: 'no_hp'
+                    data: 'active'
                 },
                 {
-                    data: 'nama_mapel'
+                data: 'detail',
+                orderable: false,
+                searchable: false
                 },
                 {
-                    data: 'is_active'
-                },
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: false, 
-                    searchable: false
+                data: 'action', 
+                name: 'action', 
+                orderable: false, 
+                searchable: false
                 }
             ]
         });

@@ -17,7 +17,7 @@
 
         <div class="hero">
                 <div class="col-md-4 mx-auto rounded-circle bg-white" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px;">
-                    <img src="{{ asset('storage/'.$siswa->foto) }}" class="card-img-top  rounded-circle img-responsive" alt="...">
+                    <img src="{{ asset('storage/'.$siswa->foto) }}" class="card-img-top  rounded-circle img-responsive" alt="Foto {{ $guru->nama }}">
                 </div>
         </div>
         <br>
@@ -47,12 +47,12 @@
                     <tr>
                         <td><p class="font-weight-bold">Kelas </p></td>
                         <td>:</td>
-                        <td> {{ $siswa->kelas }} </td>
+                        <td> {{ $siswa->kelas->nama_kelas }} </td>
                     </tr>
                     <tr>
                         <td><p class="font-weight-bold">jurusan </p></td>
                         <td>:</td>
-                        <td>{{ $siswa->jurusan->nama }}</td>
+                        <td>{{ $siswa->jurusan->nama_jurusan }}</td>
 
                     </tr>
                     <tr>

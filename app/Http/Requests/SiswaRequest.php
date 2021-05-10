@@ -27,10 +27,10 @@ class SiswaRequest extends FormRequest
             'nisn' => 'required|max:12',
             'nama' => 'required|max:100',
             'tgl_lahir' => 'required',
-            'kelas' => 'required|integer|in:10,11,12',
+            'id_kelas' => 'required|integer',
+            'id_jurusan' => 'required|integer',
             'tahun_ajaran' => 'required|max:10',
             'foto' => 'required|mimes:jpg,bmp,png',
-            'password' => 'required',
         ];
     }
 

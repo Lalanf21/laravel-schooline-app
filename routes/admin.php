@@ -16,4 +16,12 @@ Route::resource('guru', 'GuruController');
 Route::get('/jurusan/list', 'JurusanController@list_jurusan')->name('list-jurusan');
 Route::resource('jurusan', 'JurusanController');
 
+// route pengaturan kelas
+Route::get('/kelas/list', 'KelasController@list_kelas')->name('list-kelas');
+Route::resource('kelas', 'KelasController');
+
+// route pengaturan mapel
+Route::get('/mapel/list', 'MapelController@list_mapel')->name('list-mapel');
+Route::resource('mapel', 'MapelController');
+
 ?>

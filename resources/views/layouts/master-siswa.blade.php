@@ -14,12 +14,12 @@
 
 </head>
 
-<body>
+<body class="sidebar-mini">
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
             @include('includes.navbar')
-            @include('includes.sidebar')
+            @include('includes.sidebar-siswa')
 
             {{-- main content --}}
             <div class="main-content">

@@ -12,7 +12,6 @@ class SiswaModel extends Model
         'nama',
         'nisn',
         'tgl_lahir',
-        'kelas',
         'is_active',
         'tahun_ajaran',
         'foto',
@@ -23,4 +22,14 @@ class SiswaModel extends Model
     protected $table = 'siswa';
     protected $primaryKey = 'id_siswa';
 
+    // relation
+    public function kelas()
+    {
+        return $this->belongsTo('\App\Model\kelasModel', 'id_kelas');
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo('\App\Model\jurusanModel', 'id_jurusan');
+    }
 }
