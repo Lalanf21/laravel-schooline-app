@@ -12,12 +12,12 @@ class GuruController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.pengaturan.guru.index');
+        return view('admin.pages.master-data.guru.index');
     }
 
     public function create()
     {
-        return view('admin.pages.pengaturan.guru.form_add');
+        return view('admin.pages.master-data.guru.form_add');
     }
 
     public function store(guruRequest $request)
@@ -33,13 +33,13 @@ class GuruController extends Controller
     public function show(guruModel $guru)
     {
         $nama_mapel = $guru->mapel;
-        return view('admin.pages.pengaturan.guru.detail_guru', compact('guru','nama_mapel'));
+        return view('admin.pages.master-data.guru.detail_guru', compact('guru','nama_mapel'));
     }
 
     public function edit($id)
     {
         $guru = guruModel::findOrFail($id);
-        return view('admin.pages.pengaturan.guru.form_edit', compact('guru'));
+        return view('admin.pages.master-data.guru.form_edit', compact('guru'));
     }
 
     public function update(Request $request, $id)

@@ -10,7 +10,7 @@ class KelasController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.pengaturan.kelas.index');
+        return view('admin.pages.master-data.kelas.index');
     }
 
 
@@ -24,7 +24,7 @@ class KelasController extends Controller
     public function edit($id)
     {
         $item = kelasModel::findOrFail($id);
-        return view('admin.pages.pengaturan.kelas.form_edit', compact('item'));
+        return view('admin.pages.master-data.kelas.form_edit', compact('item'));
     }
 
     public function update(kelasRequest $request, $id)
@@ -40,8 +40,12 @@ class KelasController extends Controller
     {
         $item = kelasModel::findOrFail($id);
 
-        $item->delete();
-        return redirect()->route('admin-panel.kelas.index')->with('status', 'Berhasil di Hapus !');
+        
+        try {
+            $item->delete();
+        } catch (\Exception $ex) {
+            return redirect()->route('admin-panel.kelas.index')->with('status', 'Data Kelas tidak boleh di hapus !');
+        }
     }
 
     public function list_kelas()

@@ -1,13 +1,11 @@
 @extends('layouts.master')
-@section('title','Siswa')
+@section('title','Data Kelas')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Management Data Siswa</h2>
+            <h2 class="card-title" style="color: black;">Management data Kelas</h2>
             <hr>
-            <a href="{{ route('admin-panel.siswa.create') }}" class="btn btn-primary">Tambah Data Siswa</a>
-
         </div>
     </div>
     @if (session('status'))
@@ -23,18 +21,35 @@
     </div>
     @endif
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Tambah Kelas</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('admin-panel.kelas.store') }}">
+                        @csrf
+                        <input id="nama_kelas" type="text" name="nama_kelas" placeholder="Nama kelas" autofocus value="{{ old('nama_kelas') }}" class="form-control @error('nama_kelas') is-invalid @enderror">
+
+                        @error('nama_kelas')
+                        <div class="text-muted">{{ $message }}</div>
+                        @enderror
+                </div>
+                <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-primary">SUBMIT <i class="fas fa-arrow-right"></i></button>
+                </div>
+                    </form>
+            </div>
+
+        </div>
+        <div class="col-md-7">
             <div class="container bg-white p-4" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px">
                 <div class="table-responsive">
-                    <table id="siswa" class="table align-items-center table-flush">
+                    <table id="kelas" class="table table-hover align-items-center table-flush">
                         <thead class="thead-dark">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">NISN</th>
-                                <th scope="col">Nama Siswa</th>
-                                <th scope="col">Jurusan</th>
-                                <th scope="col">Kelas</th>
-                                <th scope="col">Detail</th>
+                                <th scope="col">kelas</th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -52,10 +67,10 @@
 @push('after-script')
 <script>
     $(function() {
-        $('#siswa').DataTable({
+        $('#kelas').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('admin-panel.list-siswa') }}",
+            , ajax: "{{ @route('admin-panel.list-kelas') }}",
 
 
             columns: [
@@ -63,27 +78,13 @@
                     data: 'DT_RowIndex'
                 }, 
                 {
-                    data: 'nisn'
-                }, 
-                {
-                    data: 'nama'
-                }, 
-                {
-                    data: 'tahun_ajaran'
+                    data: 'nama_kelas'
                 },
                 {
-                    data: 'kelas.nama_kelas'
-                },
-                {
-                    data: 'detail',
-                    orderable: false,
+                    data: 'action', 
+                    name: 'action', 
+                    orderable: false, 
                     searchable: false
-                },
-                {
-                    data: 'action'
-                    , name: 'action'
-                    , orderable: false
-                    , searchable: false
                 }
             ]
         });

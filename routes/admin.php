@@ -24,4 +24,9 @@ Route::resource('kelas', 'KelasController');
 Route::get('/mapel/list', 'MapelController@list_mapel')->name('list-mapel');
 Route::resource('mapel', 'MapelController');
 
+// route users
+Route::get('/users/list', 'UsersController@list_users')->name('list-users');
+Route::post('/users/{nisn}', 'UsersController@get_nisn');
+Route::resource('users', 'UsersController');
+
 ?>

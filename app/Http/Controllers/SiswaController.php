@@ -13,7 +13,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.pengaturan.siswa.index');;
+        return view('admin.pages.master-data.siswa.index');;
 
     }
 
@@ -21,7 +21,7 @@ class SiswaController extends Controller
     {
         $jurusan = jurusanModel::get();
         $kelas = kelasModel::get();
-        return view('admin.pages.pengaturan.siswa.form_add',compact('jurusan','kelas'));
+        return view('admin.pages.master-data.siswa.form_add',compact('jurusan','kelas'));
     }
 
     public function store(SiswaRequest $request)
@@ -36,14 +36,14 @@ class SiswaController extends Controller
 
     public function show(SiswaModel $siswa)
     {
-        return view('admin.pages.pengaturan.siswa.detail_siswa', compact('siswa'));
+        return view('admin.pages.master-data.siswa.detail_siswa', compact('siswa'));
     }
 
     public function edit(SiswaModel $siswa)
     {
         $jurusan = jurusanModel::get();
         $kelas = kelasModel::get();
-        return view('admin.pages.pengaturan.siswa.form_edit', compact('siswa','kelas','jurusan'));
+        return view('admin.pages.master-data.siswa.form_edit', compact('siswa','kelas','jurusan'));
     }
 
     public function update(Request $request, $id)

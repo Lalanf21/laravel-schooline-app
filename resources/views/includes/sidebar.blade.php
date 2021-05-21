@@ -20,10 +20,10 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin-panel.siswa.index') }}">Data Siswa</a></li>
                     <li><a class="nav-link" href="{{ route('admin-panel.guru.index') }}">Data Guru</a></li>
-                    <li><a class="nav-link" href="{{ route('admin-panel.mapel.index') }}">Mata Pelajaran</a></li>
+                    <li><a class="nav-link" href="{{ route('admin-panel.mapel.index') }}">Data Mata Pelajaran</a></li>
 
-                    <li><a class="nav-link" href="{{ route('admin-panel.kelas.index') }}">Kelas</a></li>
-                    <li><a class="nav-link" href="{{ route('admin-panel.jurusan.index') }}">Jurusan</a></li>
+                    <li><a class="nav-link" href="{{ route('admin-panel.kelas.index') }}">Data Kelas</a></li>
+                    <li><a class="nav-link" href="{{ route('admin-panel.jurusan.index') }}">Data Jurusan</a></li>
 
                 </ul>
             </li>
@@ -31,7 +31,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i>
                     <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="">Kelas</a>
+                    <li><a class="nav-link" href="">Ruang Belajar</a>
                     </li>
                     <li><a class="nav-link" href="">Tugas</a>
                     <li><a class="nav-link" href="">Nilai</a>
@@ -42,8 +42,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i>
                     <span>Pengaturan</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="">Atur Nilai</a>
-                    <li><a class="nav-link" href="">Kelola User</a>
+                    <li><a class="nav-link" href="{{ route('admin-panel.users.index') }}">Kelola User</a>
                     </li>
                     </li>
                 </ul>

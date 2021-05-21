@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title','Siswa')
+@section('title','Edit kelas')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Kelola Kelas</h2>
+            <h2 class="card-title" style="color: black;">Management data kelas</h2>
             <hr>
         </div>
     </div>
@@ -24,19 +24,21 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tambah Kelas</h4>
+                    <h4>Edit kelas</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin-panel.kelas.store') }}">
+                    <form method="POST" action="{{ route('admin-panel.kelas.update',$item->id_kelas) }}">
+                        @method('put')
                         @csrf
-                        <input id="nama_kelas" type="text" name="nama_kelas" placeholder="Nama kelas" autofocus value="{{ old('nama_kelas') }}" class="form-control @error('nama_kelas') is-invalid @enderror">
+                        <input id="nama_kelas" type="text" name="nama_kelas" placeholder="Nama kelas" value="{{ $item->nama_kelas }}" class="form-control @error('nama_kelas') is-invalid @enderror">
 
                         @error('nama_kelas')
                         <div class="text-muted">{{ $message }}</div>
                         @enderror
                 </div>
                 <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary">SUBMIT <i class="fas fa-arrow-right"></i></button>
+                    <a href="{{ route('admin-panel.kelas.index') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                    <button type="submit" class="btn btn-warning">Edit <i class="fas fa-arrow-right"></i></button>
                 </div>
                     </form>
             </div>

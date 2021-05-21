@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title','Siswa')
+@section('title','Edit Mata Pelajaran')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Kelola Mata Pelajaran</h2>
+            <h2 class="card-title" style="color: black;">Management Mata Pelajaran</h2>
             <hr>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h4>Tambah Mata Pelajaran</h4>
+                    <h4>Edit Mata Pelajaran</h4>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin-panel.mapel.update',$mapel->id_mapel) }}">
@@ -78,6 +78,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
+                    <a href="{{ route('admin-panel.mapel.index') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Kembali</a>
                     <button type="submit" class="btn btn-warning">EDIT <i class="fas fa-arrow-right"></i></button>
                 </div>
                     </form>

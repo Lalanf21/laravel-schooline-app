@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title','Siswa')
+@section('title','Data jurusan')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Kelola Jurusan</h2>
+            <h2 class="card-title" style="color: black;">Management data jurusan</h2>
             <hr>
         </div>
     </div>

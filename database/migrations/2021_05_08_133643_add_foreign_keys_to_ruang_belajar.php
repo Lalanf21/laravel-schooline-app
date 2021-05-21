@@ -20,7 +20,7 @@ class AddForeignKeysToRuangBelajar extends Migration
 
             $table->foreign('id_guru', 'id_guru_fk_rb')->references('id_guru')->on('guru')->onUpdate('CASCADE')->onDelete('RESTRICT');
 
-            $table->foreign('id_siswa', 'id_siswa_fk_rb')->references('id_siswa')->on('siswa')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('id_siswa', 'id_siswa_fk_rb')->references('id_siswa')->on('siswa')->onUpdate('CASCADE')->onDelete('CASCADE');
 
 
         });

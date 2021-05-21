@@ -14,7 +14,7 @@ class MapelController extends Controller
     {
         $kelas = kelasModel::all();
         $guru = guruModel::all();
-        return view('admin.pages.pengaturan.mapel.index', compact('kelas','guru'));
+        return view('admin.pages.master-data.mapel.index', compact('kelas','guru'));
     }
     
     
@@ -30,7 +30,7 @@ class MapelController extends Controller
         $mapel = mapelModel::findOrFail($id);
         $guru = guruModel::all();
         $kelas = kelasModel::all();
-        return view('admin.pages.pengaturan.mapel.form_edit', compact('mapel', 'kelas','guru'));
+        return view('admin.pages.master-data.mapel.form_edit', compact('mapel', 'kelas','guru'));
     }
 
     public function update(mapelRequest $request, $id)

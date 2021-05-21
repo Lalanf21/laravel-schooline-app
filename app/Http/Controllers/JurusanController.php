@@ -10,7 +10,7 @@ class JurusanController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.pengaturan.jurusan.index');
+        return view('admin.pages.master-data.jurusan.index');
     }
 
 
@@ -24,7 +24,7 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $item = jurusanModel::findOrFail($id);
-        return view('admin.pages.pengaturan.jurusan.form_edit', compact('item'));
+        return view('admin.pages.master-data.jurusan.form_edit', compact('item'));
     }
 
     public function update(jurusanRequest $request, $id)
