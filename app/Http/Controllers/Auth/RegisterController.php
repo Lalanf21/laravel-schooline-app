@@ -22,16 +22,15 @@ class RegisterController extends Controller
     {
         $message = [
             'exists' => 'Kamu Tidak Terdaftar',
-            'exists' => 'Kamu Tidak Terdaftar',
-            'confirmed' => 'Password tidak sama',
             'min' => 'Field :attribute minimal 5 karakter',
             'required' => 'Wajib di isi',
             'confirmed' => 'Password Tidak Sama',
+            'unique' => 'Kamu sudah pernah register !'
         ];
         
         return Validator::make($data, 
         [
-            'nisn' => ['required', 'string', 'max:10','exists:siswa,nisn'],
+            'nisn' => ['required', 'string', 'max:10','exists:siswa,nisn', 'unique:users,nisn'],
             'nama' => ['required', 'string', 'exists:siswa,nama'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
         ], $message);
