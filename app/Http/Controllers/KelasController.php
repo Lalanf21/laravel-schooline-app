@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\kelasRequest;
-use App\model\kelasModel;
+use App\Model\KelasModel;
 use DataTables;
 
 class KelasController extends Controller
@@ -14,22 +14,22 @@ class KelasController extends Controller
     }
 
 
-    public function store(kelasRequest $request)
+    public function store(KelasRequest $request)
     {
         $data = $request->all();
-        kelasModel::create($data);
+        KelasModel::create($data);
         return redirect()->route('admin-panel.kelas.index')->with('status', 'Berhasil di Simpan !');
     }
 
     public function edit($id)
     {
-        $item = kelasModel::findOrFail($id);
+        $item = KelasModel::findOrFail($id);
         return view('admin.pages.master-data.kelas.form_edit', compact('item'));
     }
 
-    public function update(kelasRequest $request, $id)
+    public function update(KelasRequest $request, $id)
     {
-        $item = kelasModel::findOrFail($id);
+        $item = KelasModel::findOrFail($id);
         $data = $request->all();
 
         $item->update($data);
@@ -38,7 +38,7 @@ class KelasController extends Controller
 
     public function destroy($id)
     {
-        $item = kelasModel::findOrFail($id);
+        $item = KelasModel::findOrFail($id);
 
         
         try {
@@ -50,7 +50,7 @@ class KelasController extends Controller
 
     public function list_kelas()
     {
-        $item = kelasModel::all();
+        $item = KelasModel::all();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action'])

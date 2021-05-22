@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ruangBelajarModel extends Model
+class RuangBelajarModel extends Model
 {
     protected $fillable = [
         'id_mapel',

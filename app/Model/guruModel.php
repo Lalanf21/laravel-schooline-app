@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class guruModel extends Model
+class GuruModel extends Model
 {
     protected $fillable = [
         'nama',
@@ -23,7 +23,7 @@ class guruModel extends Model
     // relation
     public function mapel()
     {
-        return $this->hasMany('\App\Model\mapelModel','id_guru');
+        return $this->hasMany('\App\Model\MapelModel','id_guru');
     }
 }
 

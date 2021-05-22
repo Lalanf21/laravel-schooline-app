@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\jurusanRequest;
-use App\model\jurusanModel;
+use App\Http\Requests\JurusanRequest;
+use App\Model\JurusanModel;
 use DataTables;
 
 class JurusanController extends Controller
@@ -14,22 +14,22 @@ class JurusanController extends Controller
     }
 
 
-    public function store(jurusanRequest $request)
+    public function store(JurusanRequest $request)
     {
         $data = $request->all();
-        jurusanModel::create($data);
+        JurusanModel::create($data);
         return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Simpan !');
     }
 
     public function edit($id)
     {
-        $item = jurusanModel::findOrFail($id);
+        $item = JurusanModel::findOrFail($id);
         return view('admin.pages.master-data.jurusan.form_edit', compact('item'));
     }
 
-    public function update(jurusanRequest $request, $id)
+    public function update(JurusanRequest $request, $id)
     {
-        $item = jurusanModel::findOrFail($id);
+        $item = JurusanModel::findOrFail($id);
         $data = $request->all();
 
         $item->update($data);
@@ -38,7 +38,7 @@ class JurusanController extends Controller
 
     public function destroy($id)
     {
-        $item = jurusanModel::findOrFail($id);
+        $item = JurusanModel::findOrFail($id);
 
         $item->delete();
         return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Hapus !');
@@ -46,7 +46,7 @@ class JurusanController extends Controller
 
     public function list_jurusan()
     {
-        $item = jurusanModel::all();
+        $item = JurusanModel::all();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action'])

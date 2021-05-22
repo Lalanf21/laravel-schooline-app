@@ -23,7 +23,7 @@
                     <label for="nisn">NISN</label>
                     <input id="nisn" type="text" name="nisn" autofocus value="{{ old('nisn') }}" class="form-control @error('nisn') is-invalid @enderror">
                     @error('nisn')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -31,7 +31,7 @@
                     <label for="nama">nama</label>
                     <input id="nama" type="nama" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror">
                     @error('nama')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -65,17 +65,17 @@
 
                 <div class="form-group">
                     <label for="tgl_lahir">tanggal lahir</label>
-                    <input id="tgl_lahir" type="date" name="tgl_lahir" value="{{ old('name') }}" class="form-control @error('tgl_lahir') is-invalid @enderror">
+                    <input id="tgl_lahir" type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" class="form-control @error('tgl_lahir') is-invalid @enderror">
                     @error('tgl_lahir')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="tahun_ajaran">Tahun pelajaran</label>
-                    <input id="tahun_ajaran" placeholder="ex: 2020/2021" type="text" value="{{ old('name') }}" class="form-control @error('tahun_ajaran') is-invalid @enderror" name="tahun_ajaran">
+                    <input id="tahun_ajaran" placeholder="ex: 2020/2021" type="text" value="{{ old('tahun_ajaran') }}" class="form-control @error('tahun_ajaran') is-invalid @enderror" name="tahun_ajaran">
                     @error('tahun_ajaran')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -84,7 +84,7 @@
                         <label>Foto</label>
                         <input type="file" name="foto" id="foto" value="{{ old('foto') }}" class="form-control @error('name') is-invalid @enderror">
                         @error('foto')
-                            <div class="text-muted">{{ $message }}</div>
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

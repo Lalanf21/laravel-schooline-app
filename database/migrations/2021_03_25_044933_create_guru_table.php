@@ -20,7 +20,7 @@ class CreateGuruTable extends Migration
             $table->string('nama',100);
             $table->string('no_hp',12);
             $table->date('tgl_lahir');
-            $table->string('foto');
+            $table->string('foto')->default('foto/user.jpg');
             $table->string('is_active',1);
         });
     }

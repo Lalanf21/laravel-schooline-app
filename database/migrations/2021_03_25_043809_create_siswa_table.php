@@ -23,7 +23,7 @@ class CreateSiswaTable extends Migration
             $table->date('tgl_lahir');
             $table->string('tahun_ajaran',10);
             $table->string('is_active', 1)->default('1');
-            $table->string('foto');
+            $table->string('foto')->default('foto/user.jpg');
         });
     }
 

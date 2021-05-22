@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\guruRequest;
-use App\model\guruModel;
+use App\Http\Requests\GuruRequest;
+use App\Model\GuruModel;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
@@ -49,9 +49,11 @@ class GuruController extends Controller
 
         // cek apakah ada update foto
         if ($request->hasFile('foto')) {
-            $file = 'storage/' . $item->foto;
-            if (is_file($file)) {
-                unlink($file);
+            if ($item->foto !== 'foto/user.jpg') {
+                $file = 'storage/' . $item->foto;
+                if (is_file($file)) {
+                    unlink($file);
+                }
             }
             $data['foto'] = $request->file('foto')->store('foto/guru', 'public');
         }
@@ -63,9 +65,11 @@ class GuruController extends Controller
     public function destroy($id)
     {
         $item = guruModel::findOrFail($id);
-        $file = 'storage/' . $item->foto;
-        if (is_file($file)) {
-            unlink($file);
+        if ($item->foto !== 'foto/user.jpg') {
+            $file = 'storage/' . $item->foto;
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
 
         $item->delete();

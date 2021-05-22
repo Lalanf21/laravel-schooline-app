@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="no_hp">No HP</label>
-                    <input id="no_hp" type="text" name="no_hp" value="{{ old('name') }}" class="form-control @error('no_hp') is-invalid @enderror">
+                    <input id="no_hp" type="text" name="no_hp" value="{{ old('no_hp') }}" class="form-control @error('no_hp') is-invalid @enderror">
                     @error('no_hp')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="tgl_lahir">tanggal lahir</label>
-                    <input id="tgl_lahir" type="date" name="tgl_lahir" value="{{ old('name') }}" class="form-control @error('tgl_lahir') is-invalid @enderror">
+                    <input id="tgl_lahir" type="date" name="tgl_lahir" value="{{ old('tgl_lahir') }}" class="form-control @error('tgl_lahir') is-invalid @enderror">
                     @error('tgl_lahir')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

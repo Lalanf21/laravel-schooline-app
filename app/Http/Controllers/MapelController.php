@@ -2,38 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\mapelRequest;
-use App\Model\guruModel;
-use App\Model\kelasModel;
-use App\model\mapelModel;
+use App\Http\Requests\MapelRequest;
+use App\Model\GuruModel;
+use App\Model\KelasModel;
+use App\model\MapelModel;
 use DataTables;
 
 class MapelController extends Controller
 {
     public function index()
     {
-        $kelas = kelasModel::all();
-        $guru = guruModel::all();
+        $kelas = KelasModel::all();
+        $guru = GuruModel::all();
         return view('admin.pages.master-data.mapel.index', compact('kelas','guru'));
     }
     
     
-    public function store(mapelRequest $request)
+    public function store(MapelRequest $request)
     {
         $data = $request->all();
-        mapelModel::create($data);
+        MapelModel::create($data);
         return redirect()->route('admin-panel.mapel.index')->with('status', 'Berhasil di Simpan !');
     }
     
     public function edit($id)
     {
-        $mapel = mapelModel::findOrFail($id);
-        $guru = guruModel::all();
-        $kelas = kelasModel::all();
+        $mapel = MapelModel::findOrFail($id);
+        $guru = GuruModel::all();
+        $kelas = KelasModel::all();
         return view('admin.pages.master-data.mapel.form_edit', compact('mapel', 'kelas','guru'));
     }
 
-    public function update(mapelRequest $request, $id)
+    public function update(MapelRequest $request, $id)
     {
         $item = mapelModel::findOrFail($id);
         $data = $request->all();
@@ -44,7 +44,7 @@ class MapelController extends Controller
 
     public function destroy($id)
     {
-        $item = mapelModel::findOrFail($id);
+        $item = MapelModel::findOrFail($id);
 
         $item->delete();
         return redirect()->route('admin-panel.mapel.index')->with('status', 'Berhasil di Hapus !');
@@ -52,7 +52,7 @@ class MapelController extends Controller
 
     public function list_mapel()
     {
-        $item = mapelModel::with('kelas')->get();
+        $item = MapelModel::with('kelas')->get();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action'])

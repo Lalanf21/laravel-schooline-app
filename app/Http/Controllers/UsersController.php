@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\usersRequest;
-use App\Model\guruModel;
+use App\Http\Requests\UsersRequest;
+use App\Model\GuruModel;
 use App\User;
 use DataTables;
 use Spatie\Permission\Models\Role;
@@ -14,13 +14,13 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $guru = guruModel::all();
+        $guru = GuruModel::all();
         $role = Role::all();
         return view('admin.pages.pengaturan.user.index', compact('guru','role'));
     }
 
 
-    public function store(usersRequest $request)
+    public function store(UsersRequest $request)
     {
         $nama = $request->nama;
         $nisn = $request->nisn;
@@ -47,7 +47,7 @@ class UsersController extends Controller
         return view('admin.pages.pengaturan.user.form_edit', compact('items','roles','roleUser'));
     }
 
-    public function update(usersRequest $request, $id)
+    public function update(UsersRequest $request, $id)
     {
         $item = User::findOrFail($id);
         // dd($request->role);
@@ -69,7 +69,7 @@ class UsersController extends Controller
 
     public function get_nisn($id)
     {
-        $guru = guruModel::where('nama', $id)->first();
+        $guru = GuruModel::where('nama', $id)->first();
         return response()->json($guru);
     }
 

@@ -25,11 +25,11 @@ class SiswaModel extends Model
     // relation
     public function kelas()
     {
-        return $this->belongsTo('\App\Model\kelasModel', 'id_kelas');
+        return $this->belongsTo('\App\Model\KelasModel', 'id_kelas');
     }
 
     public function jurusan()
     {
-        return $this->belongsTo('\App\Model\jurusanModel', 'id_jurusan');
+        return $this->belongsTo('\App\Model\JurusanModel', 'id_jurusan');
     }
 }

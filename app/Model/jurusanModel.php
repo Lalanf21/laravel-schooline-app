@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class jurusanModel extends Model
+class JurusanModel extends Model
 {
     protected $fillable = [
         'nama_jurusan',
@@ -17,6 +17,6 @@ class jurusanModel extends Model
 
     public function siswa()
     {
-        return $this->hasOne('App\Model\siswaModel', 'id_kelas');
+        return $this->hasOne('App\Model\SiswaModel', 'id_kelas');
     }
 }

@@ -33,7 +33,7 @@
                         <input id="nama_jurusan" type="text" name="nama_jurusan" placeholder="Nama jurusan" value="{{ $item->nama_jurusan }}" class="form-control @error('nama_jurusan') is-invalid @enderror">
 
                         @error('nama_jurusan')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                         @enderror
                 </div>
                 <div class="card-footer text-right">

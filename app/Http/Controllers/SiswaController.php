@@ -53,11 +53,13 @@ class SiswaController extends Controller
         
         // cek apakah ada update foto
         if ($request->hasFile('foto')) {
-            $file = 'storage/'.$item->foto;
-            if (is_file($file)) {
-                unlink($file);
+            if ($item->foto !== 'foto/user.jpg') {
+                $file = 'storage/'.$item->foto;
+                if (is_file($file)) {
+                    unlink($file);
+                }
             }
-        $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
+            $data['foto'] = $request->file('foto')->store('foto/siswa', 'public');
         }
         // dd($data);
         $item->update($data);
@@ -67,9 +69,11 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         $item = SiswaModel::findOrFail($id);
-        $file = 'storage/' . $item->foto;
-        if (is_file($file)) {
-            unlink($file);
+        if ($item->foto !== 'foto/user.jpg') {
+            $file = 'storage/' . $item->foto;
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
 
         $item->delete();

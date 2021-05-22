@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class materiModel extends Model
+class MateriModel extends Model
 {
     protected $fillable = [
         'id_ruang_belajar',

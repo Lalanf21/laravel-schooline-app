@@ -32,7 +32,7 @@
                         <input id="nama_kelas" type="text" name="nama_kelas" placeholder="Nama kelas" autofocus value="{{ old('nama_kelas') }}" class="form-control @error('nama_kelas') is-invalid @enderror">
 
                         @error('nama_kelas')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                         @enderror
                 </div>
                 <div class="card-footer text-right">

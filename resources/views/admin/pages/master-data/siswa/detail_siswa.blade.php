@@ -17,7 +17,7 @@
 
         <div class="hero">
                 <div class="col-md-4 mx-auto rounded-circle bg-white" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px;">
-                    <img src="{{ asset('storage/'.$siswa->foto) }}" class="card-img-top  rounded-circle img-responsive" alt="Foto {{ $guru->nama }}">
+                    <img src="{{ asset('storage/'.$siswa->foto) }}" class="card-img-top  rounded-circle img-responsive" alt="Foto {{ $siswa->nama }}">
                 </div>
         </div>
         <br>

@@ -18,7 +18,7 @@ class GuruTableSeeder extends Seeder
             'tgl_lahir' => '1978-09-21',
             'no_hp' => '08986283749',
             'is_active' => '1',
-            'foto' => 'img.jpg',
+            'foto' => 'foto/user.jpg',
         ]);
 
         guruModel::create([
@@ -27,7 +27,7 @@ class GuruTableSeeder extends Seeder
             'tgl_lahir' => '1968-09-22',
             'no_hp' => '08136283749',
             'is_active' => '1',
-            'foto' => 'img.jpg',
+            'foto' => 'foto/user.jpg',
         ]);
 
         guruModel::create([
@@ -36,7 +36,7 @@ class GuruTableSeeder extends Seeder
             'tgl_lahir' => '1998-01-02',
             'no_hp' => '0886283749',
             'is_active' => '1',
-            'foto' => 'img.jpg',
+            'foto' => 'foto/user.jpg',
         ]);
     }
 }
