@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MapelRequest;
 use App\Model\GuruModel;
 use App\Model\KelasModel;
-use App\model\MapelModel;
+use App\Model\MapelModel;
 use DataTables;
 
 class MapelController extends Controller
@@ -35,7 +35,7 @@ class MapelController extends Controller
 
     public function update(MapelRequest $request, $id)
     {
-        $item = mapelModel::findOrFail($id);
+        $item = MapelModel::findOrFail($id);
         $data = $request->all();
 
         $item->update($data);

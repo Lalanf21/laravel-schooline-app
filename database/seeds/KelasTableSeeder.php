@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\kelasModel;
+use App\Model\KelasModel;
 use Illuminate\Database\Seeder;
 
 class KelasTableSeeder extends Seeder

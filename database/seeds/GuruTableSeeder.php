@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\guruModel;
+use App\Model\GuruModel;
 use Illuminate\Database\Seeder;
 
 class GuruTableSeeder extends Seeder

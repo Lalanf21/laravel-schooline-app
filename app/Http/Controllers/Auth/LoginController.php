@@ -39,7 +39,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('login')->with('status','Terimakasih, selamat datang kembali!');
+        return redirect()->route('login');
     }
     
 }
