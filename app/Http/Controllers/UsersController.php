@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\UsersRequest;
 use App\Model\GuruModel;
 use App\User;
@@ -71,6 +72,22 @@ class UsersController extends Controller
     {
         $guru = GuruModel::where('nama', $id)->first();
         return response()->json($guru);
+    }
+
+    public function ubah_password($id)
+    {
+        $item = User::findOrFail($id)->first();
+        // dd($item);
+        return view('admin.pages.pengaturan.user.form_ubah_sandi', compact('item'));
+    }
+
+    public function proses_password(PasswordRequest $request,$id)
+    {
+        $item = User::findOrFail($id)->first();
+        $item->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect()->route('logout')->with('status','password berhasil di ganti');    
     }
 
     public function list_users()

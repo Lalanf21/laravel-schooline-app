@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/dashboard', function () {
-    return view ('admin.pages.dashboard');
-})->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');;
 
 // route pengaturan siswa
 Route::get('/siswa/list', 'SiswaController@list_siswa')->name('list-siswa');
@@ -26,6 +24,8 @@ Route::resource('mapel', 'MapelController');
 
 // route users
 Route::get('/users/list', 'UsersController@list_users')->name('list-users');
+Route::get('/ubah-password/{id}/edit', 'UsersController@ubah_password')->name('ubah-password');
+Route::put('/ubah-password/{id}', 'UsersController@proses_password')->name('proses-ubah-password');
 Route::post('/users/{nisn}', 'UsersController@get_nisn');
 Route::resource('users', 'UsersController');
 

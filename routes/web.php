@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/','DashboardController@index')->name('dashboard');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/', function () {
     return view('auth.login');
 });

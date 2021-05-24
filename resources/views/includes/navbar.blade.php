@@ -18,9 +18,8 @@
                 <div class="d-sm-none d-lg-inline-block">{{ auth()->user()->nama }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <a href="{{ route('admin-panel.ubah-password', auth()->user()->id) }}" class="dropdown-item has-icon">
+                    <i class="fas fa-key"></i> Ubah password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class=" dropdown-item has-icon text-danger">

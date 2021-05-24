@@ -13,10 +13,12 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Siswa</h4>
+                    <a href="{{ route('admin-panel.siswa.index') }}">
+                        <h4>Siswa</h4>
+                    </a>
                 </div>
                 <div class="card-body">
-                    12
+                    {{ $siswa }}
                 </div>
             </div>
         </div>
@@ -28,10 +30,12 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Guru</h4>
+                    <a href="{{ route('admin-panel.guru.index') }}">
+                        <h4>Guru</h4>
+                    </a>
                 </div>
                 <div class="card-body">
-                    12
+                    {{ $guru }}
                 </div>
             </div>
         </div>
@@ -43,10 +47,12 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>User Aktif</h4>
+                    <a href="{{ route('admin-panel.users.index') }}">
+                        <h4>User Aktif</h4>
+                    </a>
                 </div>
                 <div class="card-body">
-                    123
+                    {{ $user }}
                 </div>
             </div>
         </div>

@@ -26,6 +26,6 @@ class MapelModel extends Model
 
     public function guru()
     {
-        return $this->belongsTo('\App\Model\GuruModel','id_mapel');
+        return $this->belongsToMany('\App\Model\GuruModel','id_mapel');
     }
 }
