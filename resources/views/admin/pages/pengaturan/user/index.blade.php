@@ -106,8 +106,27 @@
         $('#users').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('admin-panel.list-users') }}",
-
+            , ajax: "{{ @route('admin-panel.list-users') }}"
+            , dom: 'Bfrtlip'
+            , buttons: [{
+                    extend: 'print'
+                    , exportOptions: {
+                        columns: [0, 1, 2, 3]
+                    }
+                , }
+                , {
+                    extend: 'excel'
+                    , exportOptions: {
+                        columns: [0, 1, 2, 3]
+                    }
+                , }
+                , {
+                    extend: 'pdf'
+                    , exportOptions: {
+                        columns: [0, 1, 2, 3]
+                    }
+                , }
+            , ],
 
             columns: [{
                     data: 'DT_RowIndex'
@@ -137,15 +156,15 @@
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "/admin-panel/users/" + nama, 
-            type: "POST",
-            data: {},
-            contentType: false,
-            processData: false,
-            async: true, 
-            dataType: 'json',
-            success: function(data) {
+            }
+            , url: "/admin-panel/users/" + nama
+            , type: "POST"
+            , data: {}
+            , contentType: false
+            , processData: false
+            , async: true
+            , dataType: 'json'
+            , success: function(data) {
                 //console.log(data);
                 $('input[name=nisn]').val(data.nip);
                 $('input[name=password]').val(data.nip);

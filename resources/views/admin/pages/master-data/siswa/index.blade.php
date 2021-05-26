@@ -56,8 +56,30 @@
             processing: true
             , serverSide: true
             , ajax: "{{ @route('admin-panel.list-siswa') }}",
-
-
+            dom: 'Bfrtlip',
+            buttons: [
+                {
+                    extend: 'print',
+                    exportOptions: 
+                    {
+                        columns: [ 0,1,2,3,4]
+                    },
+                }, 
+                {
+                    extend: 'excel',
+                    exportOptions: 
+                    {
+                        columns: [ 0,1,2,3,4]
+                    },
+                }, 
+                {
+                    extend: 'pdf',
+                    exportOptions: 
+                    {
+                        columns: [ 0,1,2,3,4]
+                    },
+                }, 
+            ],
             columns: [
                 {
                     data: 'DT_RowIndex'

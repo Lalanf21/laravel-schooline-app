@@ -7,6 +7,7 @@ use App\Model\GuruModel;
 use App\Model\KelasModel;
 use App\model\MapelModel;
 use DataTables;
+use Illuminate\Http\Request;
 
 class MapelController extends Controller
 {
@@ -14,9 +15,19 @@ class MapelController extends Controller
     {
         $kelas = KelasModel::all();
         $guru = GuruModel::all();
+        session()->pull('id_kelas');
         return view('admin.pages.master-data.mapel.index', compact('kelas','guru'));
     }
     
+    public function tampil_mapel(Request $request)
+    {
+        $id_kelas = $request->id_kelas;
+        $session = session()->put('id_kelas', $id_kelas);
+
+        $guru = GuruModel::all();
+        $kelas = KelasModel::all();
+        return view('admin.pages.master-data.mapel.tampil-mapel', compact('kelas','guru'));
+    }
     
     public function store(MapelRequest $request)
     {
@@ -52,7 +63,8 @@ class MapelController extends Controller
 
     public function list_mapel()
     {
-        $item = MapelModel::with('kelas')->get();
+        $kelas = session()->get('id_kelas');
+        $item = MapelModel::where('id_kelas', $kelas)->get();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action'])

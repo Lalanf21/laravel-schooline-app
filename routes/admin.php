@@ -20,6 +20,7 @@ Route::resource('kelas', 'KelasController');
 
 // route pengaturan mapel
 Route::get('/mapel/list', 'MapelController@list_mapel')->name('list-mapel');
+Route::post('/tampil-mapel', 'MapelController@tampil_mapel')->name('tampil-mapel');
 Route::resource('mapel', 'MapelController');
 
 // route users

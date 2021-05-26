@@ -38,7 +38,7 @@
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">SUBMIT <i class="fas fa-arrow-right"></i></button>
                 </div>
-                    </form>
+                </form>
             </div>
 
         </div>
@@ -55,7 +55,7 @@
                         </thead>
 
                     </table>
-                    
+
                 </div>
             </div>
         </div>
@@ -70,21 +70,38 @@
         $('#kelas').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('admin-panel.list-kelas') }}",
-
-
-            columns: [
-                {
+            , ajax: "{{ @route('admin-panel.list-kelas') }}"
+            , dom: 'Bfrtlip'
+            , buttons: [{
+                    extend: 'print'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+                , {
+                    extend: 'excel'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+                , {
+                    extend: 'pdf'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+            , ],
+            columns: [{
                     data: 'DT_RowIndex'
-                }, 
-                {
+                }
+                , {
                     data: 'nama_kelas'
-                },
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: false, 
-                    searchable: false
+                }
+                , {
+                    data: 'action'
+                    , name: 'action'
+                    , orderable: false
+                    , searchable: false
                 }
             ]
         });

@@ -31,6 +31,7 @@ class LoginController extends Controller
             return redirect()->route('siswa-panel.dashboard');
         }
     }
+
     public function logout(Request $request)
     {
         $this->guard()->logout();

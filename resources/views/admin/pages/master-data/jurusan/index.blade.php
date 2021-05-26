@@ -38,7 +38,7 @@
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">SUBMIT <i class="fas fa-arrow-right"></i></button>
                 </div>
-                    </form>
+                </form>
             </div>
 
         </div>
@@ -49,13 +49,13 @@
                         <thead class="thead-dark">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">Jurusan</th>
+                                <th scope="col">Nama Jurusan</th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
 
                     </table>
-                    
+
                 </div>
             </div>
         </div>
@@ -70,21 +70,39 @@
         $('#jurusan').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('admin-panel.list-jurusan') }}",
+            , ajax: "{{ @route('admin-panel.list-jurusan') }}"
+            , dom: 'Bfrtlip'
+            , buttons: [{
+                    extend: 'print'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+                , {
+                    extend: 'excel'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+                , {
+                    extend: 'pdf'
+                    , exportOptions: {
+                        columns: [0, 1]
+                    }
+                , }
+            , ],
 
-
-            columns: [
-                {
+            columns: [{
                     data: 'DT_RowIndex'
-                }, 
-                {
+                }
+                , {
                     data: 'nama_jurusan'
-                },
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: false, 
-                    searchable: false
+                }
+                , {
+                    data: 'action'
+                    , name: 'action'
+                    , orderable: false
+                    , searchable: false
                 }
             ]
         });
@@ -93,4 +111,3 @@
 </script>
 
 @endpush
-
