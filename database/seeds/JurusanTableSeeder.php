@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\jurusanModel;
+use App\Model\JurusanModel;
 use Illuminate\Database\Seeder;
 
 class JurusanTableSeeder extends Seeder
