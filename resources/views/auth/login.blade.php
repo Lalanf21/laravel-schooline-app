@@ -44,8 +44,10 @@
                 </div>
                 <div class="col-lg-5 col-md-7 bg-white">
                     <div class="p-3">
+                        <p class="text-center">
+                            <img src="{{ asset('/assets/img/hanjuang.png') }}" alt="logo" class="img-responsive">
+                        </p>
                         <h2 class="mt-3 text-center">Login</h2>
-                        <p class="text-center">Masukan alamat email dan password untuk mengakses panel utama</p>
                         @if (session('status'))
                         <div class="row">
                             <div class="col-md-12">

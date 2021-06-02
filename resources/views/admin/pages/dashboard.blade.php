@@ -13,7 +13,7 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <a href="{{ route('admin-panel.siswa.index') }}">
+                    <a href="{{ route('admin-panel.siswa.index') }}" >
                         <h4>Siswa</h4>
                     </a>
                 </div>

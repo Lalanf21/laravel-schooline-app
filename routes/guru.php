@@ -1,7 +1,7 @@
 <?php
 
-// Route::get('/', function () {
-//     return 'admin pages';
-// })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('guru.pages.dashboard');
+})->name('dashboard');
 
 ?>
