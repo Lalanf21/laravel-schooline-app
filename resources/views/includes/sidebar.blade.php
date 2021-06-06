@@ -31,7 +31,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i>
                     <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="">Ruang Belajar</a>
+                    <li><a class="nav-link" href="{{ route('admin-panel.ruang-belajar.index') }}">Ruang Belajar</a>
                     </li>
                     <li><a class="nav-link" href="">Tugas</a>
                     <li><a class="nav-link" href="">Nilai</a>

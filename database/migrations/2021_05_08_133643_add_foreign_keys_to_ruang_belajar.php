@@ -15,14 +15,6 @@ class AddForeignKeysToRuangBelajar extends Migration
     {
         Schema::table('ruang_belajar', function (Blueprint $table) {
             $table->foreign('id_mapel', 'id_mapel_fk_rb')->references('id_mapel')->on('mapel')->onUpdate('CASCADE')->onDelete('RESTRICT');
-
-            $table->foreign('id_kelas', 'id_kelas_fk_rb')->references('id_kelas')->on('kelas')->onUpdate('CASCADE')->onDelete('RESTRICT');
-
-            $table->foreign('id_guru', 'id_guru_fk_rb')->references('id_guru')->on('guru')->onUpdate('CASCADE')->onDelete('RESTRICT');
-
-            $table->foreign('id_siswa', 'id_siswa_fk_rb')->references('id_siswa')->on('siswa')->onUpdate('CASCADE')->onDelete('CASCADE');
-
-
         });
     }
 
@@ -34,10 +26,7 @@ class AddForeignKeysToRuangBelajar extends Migration
     public function down()
     {
         Schema::table('ruang_belajar', function (Blueprint $table) {
-            $table->dropForeign('id_siswa_fk_rb');
-            $table->dropForeign('id_guru_fk_rb');
             $table->dropForeign('id_mapel_fk_rb');
-            $table->dropForeign('id_kelas_fk_rb');
         });
     }
 }

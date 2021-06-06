@@ -17,9 +17,6 @@ class CreateRuangBelajarTable extends Migration
             $table->id('id_ruang_belajar');
             $table->timestamps();
             $table->foreignId('id_mapel')->nullable()->index('id_mapel_index');
-            $table->foreignId('id_kelas')->nullable()->index('id_kelas_index');
-            $table->foreignId('id_guru')->nullable()->index('id_guru_index');
-            $table->foreignId('id_siswa')->nullable()->index('id_siswa_index');
             $table->string('nama', 20);
             $table->string('kode', 6);
             

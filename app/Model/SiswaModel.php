@@ -32,4 +32,9 @@ class SiswaModel extends Model
     {
         return $this->belongsTo('\App\Model\JurusanModel', 'id_jurusan');
     }
+
+    public function ruang_belajar()
+    {
+        return $this->belongsToMany('\App\Model\RuangBelajarModel');
+    }
 }

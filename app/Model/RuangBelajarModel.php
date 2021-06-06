@@ -8,9 +8,6 @@ class RuangBelajarModel extends Model
 {
     protected $fillable = [
         'id_mapel',
-        'id_kelas',
-        'id_guru',
-        'id_siswa',
         'nama',
         'kode',
         'created_at',
@@ -19,4 +16,15 @@ class RuangBelajarModel extends Model
 
     protected $table = 'ruang_belajar';
     protected $primaryKey = 'id_ruang_belajar';
+
+    public function siswa()
+    {
+        return $this->belongsToMany('\App\Model\SiswaModel');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo('\App\Model\MapelModel','id_mapel');
+    }
+
 }

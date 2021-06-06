@@ -18,6 +18,10 @@ Route::resource('jurusan', 'JurusanController');
 Route::get('/kelas/list', 'KelasController@list_kelas')->name('list-kelas');
 Route::resource('kelas', 'KelasController');
 
+// route ruang belajar
+Route::get('/ruang-belajar/list', 'RuangBelajarController@list')->name('list');
+Route::resource('ruang-belajar', 'RuangBelajarController');
+
 // route pengaturan mapel
 Route::get('/mapel/list', 'MapelController@list_mapel')->name('list-mapel');
 Route::post('/tampil-mapel', 'MapelController@tampil_mapel')->name('tampil-mapel');
