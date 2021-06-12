@@ -40,8 +40,11 @@ class JurusanController extends Controller
     {
         $item = JurusanModel::findOrFail($id);
 
-        $item->delete();
-        return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Hapus !');
+        try {
+            $item->delete();
+        } catch (\Exception $ex) {
+            return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Hapus !');
+        }
     }
 
     public function list_jurusan()

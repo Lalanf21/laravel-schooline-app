@@ -91,7 +91,7 @@
                     data: 'nama'
                 }, 
                 {
-                    data: 'tahun_ajaran'
+                    data: 'jurusan.nama_jurusan'
                 },
                 {
                     data: 'kelas.nama_kelas'
