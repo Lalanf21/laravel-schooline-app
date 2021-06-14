@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RuangBelajarRequest;
 use App\Model\MapelModel;
 use App\Model\RuangBelajarModel;
+use App\Model\RuangBelajarSiswaModel;
+use App\Model\SiswaModel;
 use Illuminate\Http\Request;
 use DataTables;
 class RuangBelajarController extends Controller
@@ -25,7 +27,11 @@ class RuangBelajarController extends Controller
     {
         // dd($request->all());
         RuangBelajarModel::create($request->all());
-        return redirect()->route('admin-panel.ruang-belajar.index')->with('status', 'Berhasil di Simpan !');
+        if (Auth()->user()->getRoleNames() == '["admin"]') {
+            return redirect()->route('admin-panel.ruang-belajar.index')->with('status', 'Berhasil di Simpan !');
+        }else{
+            return redirect()->route('guru-panel.guruDashboard')->with('status', 'Berhasil Membuat ruang belajar !');
+        }
     }
 
     public function show($id)
@@ -54,15 +60,34 @@ class RuangBelajarController extends Controller
         return redirect()->route('admin-panel.ruang-belajar.index')->with('status', 'Berhasil di Hapus !');
     }
 
+    public function addMember(Request $request)
+    {
+        $kode = $request->kode;
+        $item = RuangBelajarModel::where('kode',$kode)->first();
+        if ($item !== null) {
+            $nisn = Auth()->user()->nisn;
+            $id_ruang_belajar = RuangBelajarModel::where('kode',$kode)->first()->id_ruang_belajar;
+            $id_siswa = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
+
+            $add = RuangBelajarSiswaModel::create([
+                'id_ruang_belajar'=>$id_ruang_belajar,
+                'id_siswa'=>$id_siswa,
+            ]);
+            return redirect()->route('siswa-panel.siswaDashboard')->with('status', 'Berhasil masuk ke ruang belajar !');
+        }else{
+            return redirect()->route('siswa-panel.siswaDashboard')->with('status', 'Kode ruang belajar tidak di temukan!');
+        }
+    }
+
     public function list()
     {
-        $item = RuangBelajarModel::with('mapel')->get();
+        $item = RuangBelajarModel::with('mapel','guru')->get();
         return DataTables::of($item)
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/admin-panel/ruang-belajar/' . $item->ruang_belajar . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
-                $action .= ' ||<form action="/admin-panel/ruang-belajar/' . $item->ruang_belajar . '" method="post" class="d-inline">'
+                $action = '<a href="/admin-panel/ruang-belajar/' . $item->id_ruang_belajar . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a>';
+                $action .= ' ||<form action="/admin-panel/ruang-belajar/' . $item->id_ruang_belajar . '" method="post" class="d-inline">'
                 . csrf_field() . method_field("delete") . '
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;

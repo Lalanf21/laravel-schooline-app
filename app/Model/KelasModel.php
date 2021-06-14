@@ -26,4 +26,10 @@ class KelasModel extends Model
         return $this->hasOne('App\Model\SiswaModel','id_kelas');
     }
 
+    public function ruang_belajar()
+    {
+        return $this->hasOne('App\Model\RuangBelajarModel');
+    }
+
+
 }

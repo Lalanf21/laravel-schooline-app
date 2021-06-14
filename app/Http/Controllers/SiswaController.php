@@ -82,7 +82,7 @@ class SiswaController extends Controller
 
     public function list_siswa()
     {
-        $item = SiswaModel::with('kelas')->get();
+        $item = SiswaModel::with('kelas','jurusan')->get();
         return DataTables::of($item)
             ->rawColumns(['action','detail'])
             ->addIndexColumn()

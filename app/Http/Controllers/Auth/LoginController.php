@@ -26,9 +26,9 @@ class LoginController extends Controller
         if ($user->hasRole('admin')) {
             return redirect()->route('admin-panel.dashboard');
         } else if ($user->hasRole('guru')) {
-            return redirect()->route('guru-panel.dashboard');
+            return redirect()->route('guru-panel.guruDashboard');
         }else{
-            return redirect()->route('siswa-panel.dashboard');
+            return redirect()->route('siswa-panel.siswaDashboard');
         }
     }
 

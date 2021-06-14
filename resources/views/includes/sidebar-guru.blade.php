@@ -12,32 +12,29 @@
         <ul class="sidebar-menu">
             <li class="menu-header ">Dashboard</li>
             <li class="nav-item dropdown active">
-                <a href="{{ route('siswa-panel.siswaDashboard') }}" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+                <a href="{{ route('guru-panel.guruDashboard') }}" class="nav-link"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-book"></i>
                     <span>Ruang Belajar</span></a>
                 <ul class="dropdown-menu">
-                    @foreach($siswa as $value)
                     <li>
-                        @foreach($value->ruang_belajar as $rb)
+                        @foreach($ruang_belajar as $rb)
                             <a class="nav-link" href="">
-                                    {{ $rb->nama.' - '.$rb->mapel->nama_mapel.' - '. $rb->guru->nama }}
+                                    {{ $rb->nama.' - '.$rb->mapel->nama_mapel }}
                             </a>
                         @endforeach
                     </li>
-                    @endforeach
-                    
                 </ul>
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-list-alt"></i>
-                    <span>Nilai</span></a>
+                    <span>Pembelajaran</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                    <a class="nav-link" href="">Lihat Nilai</a>
+                    <a class="nav-link" href="">Input Nilai</a>
                     </li>
-                    <li><a class="nav-link" href="">Download nilai</a>
+                    <li><a class="nav-link" href="">Buat tugas</a>
                     </li>
                 </ul>
             </li>

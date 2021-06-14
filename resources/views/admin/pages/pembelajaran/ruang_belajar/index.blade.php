@@ -32,48 +32,11 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Ruang belajar</th>
                                 <th scope="col">Mata pelajaran</th>
-                                <th scope="col">Kelas</th>
                                 <th scope="col">Guru</th>
                                 <th scope="col">Kode Kelas</th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
-                        <tbody align="center">
-                        @forelse($ruang_belajar as $value)
-                            <tr>
-                                <td>
-                                    {{ $loop->iteration }}
-                                </td>
-                                <td>
-                                    {{ $value->nama }}
-                                </td>
-                                <td>
-                                    {{ $value->mapel->nama_mapel }}
-                                </td>
-                                <td>
-                                    {{ $value->mapel->kelas->nama_kelas }}
-                                </td>
-                                <td>
-                                    {{ $value->mapel->guru->nama }}
-                                </td>
-                                <td>
-                                    {{ $value->kode }}
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin-panel.ruang-belajar.edit',$value->id_ruang_belajar) }}" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Update</a> ||
-                                    <form action="{{ route('admin-panel.ruang-belajar.destroy', $value->id_ruang_belajar) }}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6">Tidak ada data</td>
-                            </tr>
-                        @endforelse
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -84,12 +47,12 @@
 @endsection
 
 @push('after-script')
-{{-- <script>
+<script>
     $(function() {
         $('#rb').DataTable({
             processing: true
             , serverSide: true
-            , ajax: "{{ @route('admin-panel.list') }}",
+            , ajax: "{{ @route('admin-panel.list-ruang-belajar') }}",
             dom: 'Bfrtlip',
             buttons: [
                 {
@@ -125,10 +88,7 @@
                     data: 'mapel.nama_mapel'
                 }, 
                 {
-                    data: 'mapel.kelas.nama.kelas'
-                },
-                {
-                    data: 'guru[].nama'
+                    data: 'guru.nama'
                 },
                 {
                     data: 'kode'
@@ -143,6 +103,6 @@
         });
     });
 
-</script> --}}
+</script>
 
 @endpush

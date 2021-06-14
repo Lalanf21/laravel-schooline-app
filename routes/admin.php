@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');;
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // route pengaturan siswa
 Route::get('/siswa/list', 'SiswaController@list_siswa')->name('list-siswa');
@@ -19,7 +19,7 @@ Route::get('/kelas/list', 'KelasController@list_kelas')->name('list-kelas');
 Route::resource('kelas', 'KelasController');
 
 // route ruang belajar
-Route::get('/ruang-belajar/list', 'RuangBelajarController@list')->name('list');
+Route::get('/ruang-belajar/list', 'RuangBelajarController@list')->name('list-ruang-belajar');
 Route::resource('ruang-belajar', 'RuangBelajarController');
 
 // route pengaturan mapel

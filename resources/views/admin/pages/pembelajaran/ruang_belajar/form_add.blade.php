@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="col-6 mt-3 p-3">
-                        <a id="generate" href="" class="btn btn-outline-primary ">Generate</a>
+                        <a id="generate" href="" class="btn btn-primary ">Generate</a>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
 
 @push('after-script')
 <script>
-    $("#generate").click(function(e){
+    $("a#generate").click(function(e){
         e.preventDefault();
         const random = Math.random().toString(36).substr(2, 6)
         $('input[name=kode]').val(random);

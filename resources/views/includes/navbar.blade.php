@@ -7,9 +7,9 @@
     <ul class="navbar-nav navbar-right">
     @if(Auth()->user()->getRoleNames() == '["siswa"]' || Auth()->user()->getRoleNames() == '["guru"]')
         <li>
-            <a href class="btn btn-outline-primary nav-link">
+            <button data-toggle="modal" data-target="{{ Auth()->user()->getRoleNames() == '["guru"]' ? '#addRuangBelajar' : '#joinRuangBelajar' }}" class="btn btn-outline-primary nav-link">
                 <i class="fas fa-plus-square" style="font-size: 30px;"></i>
-            </a>    
+            </button>    
         </li>
     @endif
         <li class="dropdown">
@@ -34,3 +34,77 @@
         </li>
     </ul>
 </nav>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="joinRuangBelajar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{{ route('siswa-panel.addMember') }}" method="post">
+                    <input type="text" placeholder="Kode Kelas ..." name="kode" class="form-control">
+                    @csrf
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Gabung <i class="fas fa-book"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="addRuangBelajar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Buat ruang belajar</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('guru-panel.ruang-belajar.store') }}" method="post">
+                    @csrf
+                    <div class="form-group">
+                    @if( isset($mapel) )
+                        <select name="id_mapel" class="form-control">
+                            <option value="#">-- Pilih Mata pelajaran --</option>
+                            @foreach($mapel as $item)
+                            <option value="{{ $item->id_mapel }}">
+                                {{ $item->nama_mapel }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('id_mapel')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama">Nama ruang belajar</label>
+                        <input id="nama" type="text" name="nama" value="{{ old('nama') }}" class="form-control @error('nama') is-invalid @enderror">
+                        @error('nama')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
+                                <label for="kode">kode</label>
+                                <input id="kode" type="text" name="kode" value="{{ old('kode') }}" class="form-control @error('kode') is-invalid @enderror" readonly>
+                                @error('kode')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-6 mt-3 p-3">
+                            <a id="generate" href="" class="btn btn-outline-primary ">Generate</a>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Buat <i class="fas fa-store"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -35,6 +35,6 @@ class SiswaModel extends Model
 
     public function ruang_belajar()
     {
-        return $this->belongsToMany('\App\Model\RuangBelajarModel');
+        return $this->belongsToMany('\App\Model\RuangBelajarModel','ruang_belajar_siswa','id_siswa','id_ruang_belajar');
     }
 }

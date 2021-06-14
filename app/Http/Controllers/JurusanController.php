@@ -43,7 +43,7 @@ class JurusanController extends Controller
         try {
             $item->delete();
         } catch (\Exception $ex) {
-            return redirect()->route('admin-panel.jurusan.index')->with('status', 'Berhasil di Hapus !');
+            return redirect()->route('admin-panel.jurusan.index')->with('status', 'Data jurusan tidak boleh di hapus !');
         }
     }
 
