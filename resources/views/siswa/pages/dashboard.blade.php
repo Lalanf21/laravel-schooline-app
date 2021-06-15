@@ -31,7 +31,7 @@
                     <h4>{{ $rb->kode }}</h4>
             </div>
             <div class="card-body">
-                <a href="{{ route('siswa-panel.ruang_belajar') }}">
+                <a href="{{ route('siswa-panel.ruang_belajar',$rb->id_ruang_belajar) }}">
                     <p style="color:green">{{ $rb->nama.' - '.$rb->mapel->nama_mapel.' - '. $rb->guru->nama }}</p>
 
                 </a>

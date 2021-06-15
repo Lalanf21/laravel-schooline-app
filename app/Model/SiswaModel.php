@@ -37,4 +37,9 @@ class SiswaModel extends Model
     {
         return $this->belongsToMany('\App\Model\RuangBelajarModel','ruang_belajar_siswa','id_siswa','id_ruang_belajar');
     }
+
+    public function ruang_belajar_siswa()
+    {
+        return $this->hasMany('\App\Model\RuangBelajarSiswaModel','id_siswa','id_siswa');
+    }
 }

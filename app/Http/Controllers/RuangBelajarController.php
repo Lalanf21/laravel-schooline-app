@@ -36,7 +36,7 @@ class RuangBelajarController extends Controller
 
     public function show($id)
     {
-        //
+        
     }
 
     public function edit($id)
@@ -93,5 +93,15 @@ class RuangBelajarController extends Controller
                 return $action;
             })
             ->make(true);
+    }
+
+    public function ruangSiswa($id)
+    {
+        $nisn = Auth()->user()->nisn;
+        $siswa = SiswaModel::where('nisn', $nisn)->get();
+
+        $friends = RuangBelajarSiswaModel::with('siswa')->where('id_ruang_belajar',$id)->get();
+        // dd($friends);
+        return view('siswa.pages.ruang_belajar', compact('siswa','friends'));
     }
 }

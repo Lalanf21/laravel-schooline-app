@@ -1,0 +1,6 @@
+Daftar Fitur yang belum selesai
+
+1. Upload Foto Siswa saat (Tambah dan Edit)
+2. Filter Mata Pelajaran dengan pilihan kelas terlebih dahulu (Kaya siakad di menu kurikulum)
+3. Semua Master Data Pakai Fitur Print
+

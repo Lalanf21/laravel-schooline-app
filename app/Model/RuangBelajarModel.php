@@ -19,7 +19,7 @@ class RuangBelajarModel extends Model
 
     public function siswa()
     {
-        return $this->belongsToMany('\App\Model\SiswaModel', 'ruang_belajar_siswa', 'id_ruang_belajar','id_siswa');
+        return $this->belongsToMany('\App\Model\SiswaModel', 'ruang_belajar', 'id_siswa','id_siswa');
     }
 
     public function mapel()
@@ -35,5 +35,10 @@ class RuangBelajarModel extends Model
     public function kelas()
     {
         return $this->belongsTo('\App\Model\KelasModel', 'id_kelas');
+    }
+
+    public function ruang_belajar()
+    {
+        return $this->belongsToMany('\App\Model\RuangBelajarModel', 'ruang_belajar','id_ruang_belajar','id_siswa');
     }
 }

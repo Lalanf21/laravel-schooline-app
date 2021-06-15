@@ -31,7 +31,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="nama">Pilih user</label>
-                            <select name="nama" class="form-control" id="nama">
+                            <select name="nama" class="form-control" id="nama_guru">
                                 <option value="#">-- Pilih --</option>
                                 @foreach($guru as $item)
                                 <option value="{{ $item->nama }}">
@@ -147,10 +147,10 @@
                     , searchable: false
                 }
             ]
-        });
+        }); 
     });
 
-    $('#nama').change(function() {
+    $('#nama_guru').change(function() {
         var nama = $(this).val();
         $.ajax({
             headers: {

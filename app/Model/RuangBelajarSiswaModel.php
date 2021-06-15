@@ -14,4 +14,14 @@ class RuangBelajarSiswaModel extends Model
     ];
 
     protected $table = 'ruang_belajar_siswa';
+
+    public function siswa()
+    {
+        return $this->belongsTo('\App\Model\SiswaModel','id_siswa','id_siswa');
+    }
+
+    public function ruang_belajar()
+    {
+        return $this->belongsTo('\App\Model\RuangBelajarModel','id_ruang_belajar','id_ruang_belajar');
+    }
 }

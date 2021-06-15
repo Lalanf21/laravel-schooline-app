@@ -18,67 +18,26 @@
             <div class="card-body">
                 <ul class="nav nav-pills" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#classwork" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-newspaper"></i> Classwork</a>
+                        <a class="nav-link active" id="calendar-tab" data-toggle="tab" href="#presensi" role="tab" aria-controls="calendar" aria-selected="true"><i class="fas fa-calendar"></i> Presensi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#teman" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-users"></i> teman</a>
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#classwork" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-newspaper"></i> Classwork</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#teman" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-users"></i> Teman</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="classwork" role="tabpanel" aria-labelledby="home-tab">
-                        <table class="table table-borderless table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>20 April 2021</td>
-                                    <td>Absensi</td>
-                                    <td>
-                                        <a href="#">
-                                            <i class="fas fa-share-square"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>21 April 2021</td>
-                                    <td>Materi</td>
-                                    <td>
-                                        <a href="#">
-                                            <i class="fas fa-share-square"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>22 April 2021</td>
-                                    <td>Tugas</td>
-                                    <td>
-                                        <a href="#">
-                                            <i class="fas fa-share-square"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="tab-pane fade show active" id="presensi" role="tabpanel" aria-labelledby="home-tab">
+                        @include('siswa.pages.presensi')
+
+                    </div>
+                    <div class="tab-pane fade show" id="classwork" role="tabpanel" aria-labelledby="home-tab">
+                        @include('siswa.pages.story')
 
                     </div>
                     <div class="tab-pane fade" id="teman" role="tabpanel" aria-labelledby="profile-tab">
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>38910</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>3981</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>Larry</td>
-                                    <td>3920</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @include('siswa.pages.friend')
 
                     </div>
                 </div>
