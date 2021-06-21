@@ -8,9 +8,13 @@
 @section('content')
 <section class="section">
 <div class="section-header">
-    <h1>PQ0029 - B. Inggris - 10 TKJ</h1>
-
-
+    <h1>
+        {{ 
+            $ruang_belajar->nama .' - '.
+            $ruang_belajar->mapel->nama_mapel .' - '.
+            $ruang_belajar->mapel->kelas->nama_kelas 
+        }}
+    </h1>
 </div>
 <div class="row">
     <div class="col-md-12">

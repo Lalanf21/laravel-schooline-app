@@ -16,11 +16,7 @@
         <div class="col-md-6">
             <div class="card card-success">
                 <div class="card-body">
-                @if (Auth()->user()->getRoleNames() == '["admin"]')
                     <form method="POST" action="{{ route('admin-panel.ruang-belajar.update',$item->id_ruang_belajar) }}">
-                @else
-                    <form method="POST" action="{{ route('guru-panel.ruang-belajar.update',$item->id_ruang_belajar) }}">
-                @endif
                         @method('put')
                         @csrf
                         <div class="form-group">
@@ -54,15 +50,9 @@
                         </div>
 
                         <div class="form-group">
-                        @if (Auth()->user()->getRoleNames() == '["admin"]')
                             <a href="{{ route('admin-panel.ruang-belajar.store') }}" class="btn btn-primary btn-lg">
                                 <i class="fas fa-arrow-left fa-2x"></i> Kembali
                             </a>
-                        @else
-                            <a href="{{ route('guru-panel.ruang-belajar.store') }}" class="btn btn-primary btn-lg">
-                                <i class="fas fa-arrow-left fa-2x"></i> Kembali
-                            </a>
-                        @endif
                             <button type="submit" class="btn btn-warning btn-lg ">
                                 <i class="fas fa-edit"></i> Edit
                             </button>

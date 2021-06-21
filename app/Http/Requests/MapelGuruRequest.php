@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RuangBelajarRequest extends FormRequest
+class MapelGuruRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,14 @@ class RuangBelajarRequest extends FormRequest
         return [
             'id_mapel' => 'required|numeric',
             'id_guru' => 'required|numeric',
-            'nama' => 'required|max:20',
-            'kode' => 'required|max:6|unique:ruang_belajar,kode',
         ];
     }
 
     public function messages()
     {
         return [
-            'required'=>'Wajib di isi !',
-            'max'=>'Karakter terlalu panjang !',
-            'numeric'=>'Pilih dahulu !',
-            'unique'=>'Kode sudah ada, silahkan generate ulang!',
+            'required' => 'Wajib di isi !',
+            'numeric' => 'Pilih Option Dahulu',
         ];
     }
 }

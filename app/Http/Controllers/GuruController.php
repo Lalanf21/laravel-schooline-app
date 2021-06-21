@@ -32,8 +32,7 @@ class GuruController extends Controller
 
     public function show(guruModel $guru)
     {
-        $nama_mapel = $guru->mapel;
-        return view('admin.pages.master-data.guru.detail_guru', compact('guru','nama_mapel'));
+        return view('admin.pages.master-data.guru.detail_guru', compact('guru'));
     }
 
     public function edit($id)
@@ -78,7 +77,7 @@ class GuruController extends Controller
 
     public function list_guru()
     {
-        $item = guruModel::with('mapel')->get();
+        $item = guruModel::get();
         // dd($item);
         return DataTables::of($item)
             ->rawColumns(['action','detail'])

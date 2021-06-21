@@ -47,9 +47,8 @@
                         <td><p class="font-weight-bold">Mata Pelajaran</p></td>
                         <td>:</td>
                         <td> 
-                            @foreach($nama_mapel as $pelajaran)
-                                {{ $pelajaran->nama_mapel }}
-                                <br>
+                            @foreach($guru->mapel as $value)
+                                - {{  $value->nama_mapel .' kelas '.$value->kelas->nama_kelas   }}<br>
                             @endforeach
                         </td>
                     </tr>

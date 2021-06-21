@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\GuruModel;
+use App\Model\MapelGuruModel;
 use App\Model\MapelModel;
 use App\Model\RuangBelajarModel;
 use App\Model\RuangBelajarSiswaModel;
@@ -35,19 +36,16 @@ class DashboardController extends Controller
     {
         $nisn = Auth()->user()->nisn;
         $siswa = SiswaModel::where('nisn', $nisn)->get();
-        // dd($siswa);
         return view('siswa.pages.dashboard', compact('siswa'));
     }
 
     public function guruDashboard()
     {
-        // // $siswa = SiswaModel::get();
-        // $siswa = SiswaModel::where('nisn', $nisn)->get();
-        // // dd($siswa);
         $nip = Auth()->user()->nisn;
         $id_guru = GuruModel::where('nip',$nip)->first()->id_guru;
-        $mapel = MapelModel::where('id_guru',$id_guru)->get();
-        $ruang_belajar = RuangBelajarModel::where('id_mapel',$id_guru)->get();
+        $mapel = MapelGuruModel::where('id_guru',$id_guru)->with('mapel')->get();
+        
+        $ruang_belajar = RuangBelajarModel::where('id_guru',$id_guru)->count();
         // dd($ruang_belajar);
         return view('guru.pages.dashboard',compact('mapel','ruang_belajar'));
     }

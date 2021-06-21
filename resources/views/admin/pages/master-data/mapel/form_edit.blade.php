@@ -50,19 +50,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <select name="id_guru" class="form-control">
-                                <option value="#">--Pilih guru--</option>
-                                @foreach($guru as $item)
-                                <option value="{{ $item->id_guru }}" {{ ($mapel->id_guru===$item->id_guru) ? 'selected' : '' }}>
-                                    {{ $item->nama }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('id_guru')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <select name="is_active" id="is_active" class="form-control">
                                 <option value="#">Aktif ?</option>
                                 <option value="1" {{ ($mapel->is_active == '1') ? 'selected' : '' }}>Ya</option>

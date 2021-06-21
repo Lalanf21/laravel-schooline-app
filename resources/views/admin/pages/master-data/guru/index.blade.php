@@ -31,7 +31,6 @@
                                 <th scope="col">#</th>
                                 <th scope="col">NIP</th>
                                 <th scope="col">Nama guru</th>
-                                <th scope="col">Mata pelajaran</th>
                                 <th scope="col">Akun Aktif</th>
                                 <th scope="col">Detail</th>
                                 <th scope="col">Option</th>
@@ -59,19 +58,19 @@
             , buttons: [{
                     extend: 'print'
                     , exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3]
                     }
                 , }
                 , {
                     extend: 'excel'
                     , exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3]
                     }
                 , }
                 , {
                     extend: 'pdf'
                     , exportOptions: {
-                        columns: [0, 1, 2, 3, 4]
+                        columns: [0, 1, 2, 3]
                     }
                 , }
             , ],
@@ -84,9 +83,6 @@
                 }
                 , {
                     data: 'nama'
-                }
-                , {
-                    data: 'mapel[].nama_mapel'
                 }
                 , {
                     data: 'active'

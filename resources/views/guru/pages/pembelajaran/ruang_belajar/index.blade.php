@@ -34,7 +34,6 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Ruang belajar</th>
                                 <th scope="col">Mata pelajaran</th>
-                                <th scope="col">Kelas</th>
                                 <th scope="col">Kode Kelas</th>
                                 <th scope="col">Option</th>
                             </tr>
@@ -51,16 +50,11 @@
 @push('after-script')
 <script>
     $(function() {
-        var cek = '{{ Auth()->user()->getRoleNames() }}';
-        if( cek == '[&quot;admin&quot;]' ) {
-            var url = '{{ @route('admin-panel.list-ruang-belajar') }}'
-        }else{
-            var url = '{{ @route('guru-panel.list-ruang-belajar') }}'
-        }
+        
         $('#rb').DataTable({
             processing: true
             , serverSide: true
-            , ajax: url,
+            , ajax: "{{ @route('guru-panel.list-ruang-belajar') }}",
             dom: 'Bfrtlip',
             buttons: [
                 {
@@ -94,9 +88,6 @@
                 }, 
                 {
                     data: 'mapel.nama_mapel'
-                },
-                {
-                    data: 'mapel.kelas.nama_kelas'
                 },
                 {
                     data: 'kode'

@@ -16,7 +16,6 @@ class AddForeignKeysToMapel extends Migration
         Schema::table('mapel', function (Blueprint $table) {
             $table->foreign('id_kelas', 'id_kelas_fk_mapel')->references('id_kelas')->on('kelas')->onUpdate('CASCADE')->onDelete('RESTRICT');
 
-            $table->foreign('id_guru', 'id_guru_fk_mapel')->references('id_guru')->on('guru')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -29,7 +28,6 @@ class AddForeignKeysToMapel extends Migration
     {
         Schema::table('mapel', function (Blueprint $table) {
             $table->dropForeign('id_kelas_fk_mapel');
-            $table->dropForeign('id_guru_fk_mapel');
         });
     }
 }

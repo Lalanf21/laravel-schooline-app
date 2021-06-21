@@ -21,9 +21,14 @@ class GuruModel extends Model
     protected $primaryKey = 'id_guru';
 
     // relation
+    public function guru_mapel()
+    {
+        return $this->hasMany('\App\Model\MapelGuruModel', 'id_guru', 'id_guru');
+    }
+
     public function mapel()
     {
-        return $this->hasMany('\App\Model\MapelModel','id_guru');
+        return $this->belongsToMany('\App\Model\MapelModel','mapel_guru','id_guru','id_mapel');
     }
 }
 

@@ -1,31 +1,19 @@
 <table class="table table-borderless table-hover">
     <tbody>
+    {{-- @foreach($works as $work) --}}
         <tr>
-            <td>20 April 2021</td>
-            <td>Absensi</td>
+            {{-- <td>{{ $work->tanggal }}</td>
+            <td>{{ $work->judul }}</td>
+            <td>{{ $work->konten }}</td> --}}
+            <td>21</td>
+            <td>asd</td>
+            <td>text.txt</td>
             <td>
                 <a href="#">
                     <i class="fas fa-download"></i>
                 </a>
             </td>
         </tr>
-        <tr>
-            <td>21 April 2021</td>
-            <td>Materi</td>
-            <td>
-                <a href="#">
-                    <i class="fas fa-download"></i>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>22 April 2021</td>
-            <td>Tugas</td>
-            <td>
-                <a href="#">
-                    <i class="fas fa-download"></i>
-                </a>
-            </td>
-        </tr>
+    {{-- @endforeach --}}
     </tbody>
 </table>

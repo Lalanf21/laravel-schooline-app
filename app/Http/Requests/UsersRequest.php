@@ -26,7 +26,7 @@ class UsersRequest extends FormRequest
         return [
             'nama' => 'required',
             'nisn' => 'required',
-            'role' => 'required',
+            'role' => 'required|in:admin,guru,siswa',
         ];
     }
 
@@ -34,6 +34,8 @@ class UsersRequest extends FormRequest
     {
         return [
             'required' => 'Wajib di isi !',
+            'in' => 'Pilih Dahulu !',
+            
         ];
     }
 }

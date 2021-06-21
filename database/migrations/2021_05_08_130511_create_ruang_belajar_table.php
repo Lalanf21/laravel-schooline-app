@@ -16,7 +16,8 @@ class CreateRuangBelajarTable extends Migration
         Schema::create('ruang_belajar', function (Blueprint $table) {
             $table->id('id_ruang_belajar');
             $table->timestamps();
-            $table->foreignId('id_mapel')->nullable()->index('id_mapel_index');
+            $table->foreignId('id_mapel')->index('id_mapel_index');
+            $table->foreignId('id_guru')->index('id_guru_index');
             $table->string('nama', 20);
             $table->string('kode', 6);
             

@@ -3,7 +3,7 @@
 @endpush
 
 
-@extends('layouts.master-guru')
+@extends('layouts.master')
 @section('title','dashboard')
 @section('content')
 <section class="section">
@@ -24,24 +24,61 @@
 </div>
 @endif
 
-<div class="row sortable-card">
-    @foreach($ruang_belajar as $rb)
-    <div class="col-12 col-md-6 col-lg-3" style="position: relative; opacity: 1; left: 0px; top: 0px;">
-        <div class="card card-success">
-            <div class="card-header ui-sortable-handle">
-                <h4>{{ $rb->kode }}</h4>
+<div class="row justify-content-md-center">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+            <div class="card-icon bg-danger">
+                <i class="fas fa-chalkboard-teacher"></i>
             </div>
-            <div class="card-body">
-                <a href="{{ route('siswa-panel.ruang_belajar') }}">
-                    <p style="color:green">{{ $rb->nama.' - '.$rb->mapel->nama_mapel }}</p>
-
-                </a>
+            <div class="card-wrap">
+                <div class="card-header">
+                    <a href="{{ route('guru-panel.ruang-belajar.index') }}">
+                        <h4>Ruang belajar</h4>
+                    </a>
+                </div>
+                <div class="card-body">
+                    {{ $ruang_belajar }}
+                </div>
             </div>
         </div>
     </div>
-    @endforeach
-</div>
 
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+        <div class="card card-statistic-1">
+            <div class="card-icon bg-primary">
+                <i class="far fa-user"></i>
+            </div>
+            <div class="card-wrap">
+                <div class="card-header">
+                    <a href="">
+                        <h4>classwork</h4>
+                    </a>
+                </div>
+                <div class="card-body">
+                    {{-- {{ $siswa }} --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 center">
+        <div class="card card-statistic-1">
+            <div class="card-icon bg-warning">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="card-wrap">
+                <div class="card-header">
+                    <a href="{{ route('admin-panel.users.index') }}">
+                        <h4>Absensi</h4>
+                    </a>
+                </div>
+                <div class="card-body">
+                    {{-- {{ $user }} --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 

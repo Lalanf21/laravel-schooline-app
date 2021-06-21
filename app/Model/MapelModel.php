@@ -21,11 +21,21 @@ class MapelModel extends Model
     // relation
     public function kelas()
     {
-        return $this->belongsTo('\App\Model\KelasModel','id_kelas');
+        return $this->belongsTo('\App\Model\KelasModel','id_kelas','id_kelas');
+    }
+
+    public function mapel_guru()
+    {
+        return $this->hasMany('\App\Model\MapelGuruModel', 'id_mapel', 'id_mapel');
+    }
+
+    public function ruang_belajar()
+    {
+        return $this->hasOne('\App\Model\RuangBelajarModel','id_mapel','id_mapel');
     }
 
     public function guru()
     {
-        return $this->belongsTo('\App\Model\GuruModel','id_mapel');
+        return $this->belongsToMany('\App\Model\GuruModel', 'mapel_guru', 'id_mapel', 'id_guru');
     }
 }

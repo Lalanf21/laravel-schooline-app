@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MapelGuruRequest;
 use App\Http\Requests\MapelRequest;
 use App\Model\GuruModel;
 use App\Model\KelasModel;
@@ -84,4 +85,6 @@ class MapelController extends Controller
                 return $action;
             })->make(true);
     }
+
+    
 }

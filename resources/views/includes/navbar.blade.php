@@ -34,7 +34,7 @@
         </li>
     </ul>
 </nav>
-
+{{-- modal join ruang belajar --}}
 <div class="modal fade" tabindex="-1" role="dialog" id="joinRuangBelajar">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -51,7 +51,10 @@
         </div>
     </div>
 </div>
+{{-- akhir modal join ruang belajar --}}
 
+{{-- Modal add ruang belajar --}}
+@if(Auth()->user()->getRoleNames() == '["guru"]')
 <div class="modal fade" tabindex="-1" role="dialog" id="addRuangBelajar">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -66,8 +69,8 @@
                         <select name="id_mapel" class="form-control">
                             <option value="#">-- Pilih Mata pelajaran --</option>
                             @foreach($mapel as $item)
-                            <option value="{{ $item->id_mapel }}">
-                                {{ $item->nama_mapel }}
+                            <option value="{{ $item->mapel->id_mapel }}">
+                                {{ $item->mapel->nama_mapel.' kelas '.$item->mapel->kelas->nama_kelas }}
                             </option>
                             @endforeach
                         </select>
@@ -108,37 +111,43 @@
         </div>
     </div>
 </div>
+@endif
+{{-- akhir modal add ruang belajar --}}
 
 <!-- Modal Presensi-->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalPresensi">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Presensi Kehadiran</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="#">
-            @csrf
-            <div class="form-group">
-                  <select class="form-control">
-                    <option>Hadir</option>
-                    <option>Sakit</option>
-                    <option>Ijin</option>
-                  </select>
-            </div>
-            <div class="form-group">
-                <input type="file" name="bukti" class="form-control">
-                <i><small class="text-danger">* Upload surat keterangan jika ijin atau sakit</small></i>
-            </div>
-      </div>
-      <div class="modal-footer bg-whitesmoke br">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-        <button type="button" class="btn btn-primary">Kirim</button>
-      </div>
-      </form>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Presensi Kehadiran</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="#">
+                @csrf
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>Hadir</option>
+                        <option>Sakit</option>
+                        <option>Ijin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="bukti" class="form-control">
+                    <i><small class="text-danger">* Upload surat keterangan jika ijin atau sakit</small></i>
+                </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="button" class="btn btn-primary">Kirim</button>
+        </div>
+        </form>
+        </div>
     </div>
-  </div>
 </div>
+
+{{-- modal upload classwork --}}
+
+{{-- akhir modal upload classwork --}}

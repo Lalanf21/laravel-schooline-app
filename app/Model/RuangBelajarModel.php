@@ -8,6 +8,7 @@ class RuangBelajarModel extends Model
 {
     protected $fillable = [
         'id_mapel',
+        'id_guru',
         'nama',
         'kode',
         'created_at',
@@ -24,17 +25,12 @@ class RuangBelajarModel extends Model
 
     public function mapel()
     {
-        return $this->belongsTo('\App\Model\MapelModel','id_mapel');
+        return $this->belongsTo('\App\Model\MapelModel','id_mapel','id_mapel');
     }
 
     public function guru()
     {
-        return $this->belongsTo('\App\Model\GuruModel', 'id_mapel');
-    }
-
-    public function kelas()
-    {
-        return $this->belongsTo('\App\Model\KelasModel', 'id_kelas');
+        return $this->belongsTo('\App\Model\GuruModel','id_guru','id_guru');
     }
 
     public function ruang_belajar()

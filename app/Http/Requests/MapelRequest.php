@@ -26,7 +26,6 @@ class MapelRequest extends FormRequest
         return [
             'nama_mapel' => 'required',
             'id_kelas' => 'required|numeric',
-            'id_guru' => 'required|numeric',
             'is_active' => 'required|numeric',
         ];
     }

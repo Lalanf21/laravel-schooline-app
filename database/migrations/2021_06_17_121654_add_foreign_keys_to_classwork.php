@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToNilai extends Migration
+class AddForeignKeysToClasswork extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysToNilai extends Migration
      */
     public function up()
     {
-        Schema::table('nilai', function (Blueprint $table) {
-            $table->foreign('id_tugas', 'id_tugas_fk_nilai')->references('id_tugas')->on('tugas')->onUpdate('CASCADE')->onDelete('CASCADE');
+        Schema::table('classwork', function (Blueprint $table) {
+            $table->foreign('id_ruang_belajar', 'id_fk_rbc')->references('id_ruang_belajar')->on('ruang_belajar')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -25,8 +25,8 @@ class AddForeignKeysToNilai extends Migration
      */
     public function down()
     {
-        Schema::table('nilai', function (Blueprint $table) {
-            $table->dropForeign('id_tugas_fk_nilai');
+        Schema::table('classwork', function (Blueprint $table) {
+            $table->dropForeign('id_fk_rbc');
         });
     }
 }

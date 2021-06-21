@@ -18,18 +18,12 @@ class KelasModel extends Model
     // relation
     public function mapel()
     {
-        return $this->hasOne('App\Model\MapelModel','id_mapel');
+        return $this->hasOne('App\Model\MapelModel','id_kelas','id_kelas');
     }
 
     public function siswa()
     {
         return $this->hasOne('App\Model\SiswaModel','id_kelas');
     }
-
-    public function ruang_belajar()
-    {
-        return $this->hasOne('App\Model\RuangBelajarModel');
-    }
-
 
 }
