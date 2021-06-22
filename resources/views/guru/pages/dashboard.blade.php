@@ -50,12 +50,12 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <a href="">
-                        <h4>classwork</h4>
-                    </a>
                 </div>
                 <div class="card-body">
                     {{-- {{ $siswa }} --}}
+                    <a href="{{ route('guru-panel.classwork.index') }}">
+                        classwork
+                    </a>
                 </div>
             </div>
         </div>

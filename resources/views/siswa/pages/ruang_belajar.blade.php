@@ -10,8 +10,8 @@
 <div class="section-header">
     <h1>
         {{ 
-            $ruang_belajar->nama .' - '.
-            $ruang_belajar->mapel->nama_mapel .' - '.
+            //$ruang_belajar->nama .' - '.
+            $ruang_belajar->mapel->nama_mapel .' - kelas '.
             $ruang_belajar->mapel->kelas->nama_kelas 
         }}
     </h1>

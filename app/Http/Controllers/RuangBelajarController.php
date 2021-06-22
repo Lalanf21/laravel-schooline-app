@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RuangBelajarRequest;
+use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
 use App\Model\MapelModel;
@@ -16,11 +17,16 @@ class RuangBelajarController extends Controller
     
     public function index()
     {
-        $nip = Auth()->user()->nisn;
-        $id_guru = GuruModel::where('nip', $nip)->first()->id_guru;
-        $mapel = MapelGuruModel::where('id_guru', $id_guru)->with('mapel')->get();
-        $ruang_belajar = RuangBelajarModel::with('mapel')->get();
-        return view('admin.pages.pembelajaran.ruang_belajar.index', compact('ruang_belajar','mapel'));
+        if (Auth()->user()->getRoleNames() == '["guru"]') {
+            $nip = Auth()->user()->nisn;
+            $id_guru = GuruModel::where('nip', $nip)->first()->id_guru;
+            $mapel = MapelGuruModel::where('id_guru', $id_guru)->with('mapel')->get();
+            $ruang_belajar = RuangBelajarModel::with('mapel')->get();
+            return view('admin.pages.pembelajaran.ruang_belajar.index', compact('ruang_belajar','mapel'));
+        }else{
+            $ruang_belajar = RuangBelajarModel::with('mapel')->get();
+            return view('admin.pages.pembelajaran.ruang_belajar.index', compact('ruang_belajar'));
+        }
     }
 
     public function create()
@@ -134,8 +140,11 @@ class RuangBelajarController extends Controller
         $ruang_belajar = RuangBelajarModel::where('id_ruang_belajar', $id)->with('mapel')->first();
         
         $friends = RuangBelajarSiswaModel::with('siswa')->where('id_ruang_belajar',$id)->get();
-        // $works = MateriModel::where('id_ruang_belajar',$id)->get();
-        // dd($mapel);
-        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar'));
+        $works = ClassworkModel::where([
+            ['id_ruang_belajar','=',$id],
+            ['is_publish','=','1']
+        ])->get();
+        // dd($works);
+        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works'));
     }
 }

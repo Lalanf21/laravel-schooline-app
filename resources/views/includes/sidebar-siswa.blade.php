@@ -22,7 +22,7 @@
                     <li>
                         @foreach($value->ruang_belajar as $rb)
                             <a class="nav-link" href="">
-                                    {{ $rb->nama.' - '.$rb->mapel->nama_mapel.' - '.$rb->mapel->kelas->nama_kelas }}
+                                    {{ $rb->mapel->nama_mapel.' - '.$rb->mapel->kelas->nama_kelas }}
                             </a>
                         @endforeach
                     </li>

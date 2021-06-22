@@ -7,6 +7,7 @@ use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
 use App\Model\RuangBelajarModel;
+use App\Model\SiswaModel;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,10 @@ class ClassworkController extends Controller
 
     public function show($id)
     {
-        //
+        $nisn = Auth()->user()->nisn;
+        $siswa = SiswaModel::where('nisn', $nisn)->get();
+        $item = ClassworkModel::find($id);
+        return view ('siswa.pages.detail_story',compact('item','siswa'));
     }
 
     public function edit($id)

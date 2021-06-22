@@ -40,7 +40,6 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin-panel.ruang-belajar.index') }}">Ruang Belajar</a>
                     </li>
-                    <li><a class="nav-link" href="">Classwork</a>
                     <li><a class="nav-link" href="">Nilai</a>
                     </li>
                 </ul>
