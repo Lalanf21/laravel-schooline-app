@@ -26,5 +26,10 @@ class ClassworkModel extends Model
     {
         return $this->belongsTo('\App\Model\RuangBelajarModel', 'id_ruang_belajar', 'id_ruang_belajar');
     }
+
+    public function classwork()
+    {
+        return $this->hasOne('\App\Model\ClassworksiswaModel', 'id_classwork', 'id_classwork');
+    }
     
 }

@@ -44,7 +44,7 @@ class ClassworkController extends Controller
     {
         $nisn = Auth()->user()->nisn;
         $siswa = SiswaModel::where('nisn', $nisn)->get();
-        $item = ClassworkModel::find($id);
+        $item = ClassworkModel::where('id_classwork',$id)->with('classwork')->first();
         return view ('siswa.pages.detail_story',compact('item','siswa'));
     }
 
@@ -92,7 +92,7 @@ class ClassworkController extends Controller
     {
         $item = ClassworkModel::with('ruang_belajar.mapel.kelas')->get();
         return DataTables::of($item)
-            ->rawColumns(['action'])
+            ->rawColumns(['action','penilaian'])
             ->addIndexColumn()
             ->addColumn('publish', function ($item) {
                 if ($item->is_publish == '1') {
@@ -107,6 +107,10 @@ class ClassworkController extends Controller
                 . csrf_field() . method_field("delete") . '
                 <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
                 return $action;
+            })
+            ->addColumn('penilaian', function ($item) {
+                $penilaian = '<a href="/guru-panel/classwork/penilaian/' . $item->id_classwork . '" class="btn btn-light"><i class="fas fa-book"></i></a>';
+                return $penilaian;
             })
             ->make(true);
     }

@@ -57,7 +57,7 @@
                         <label>Foto</label>
                         <input type="file" name="foto" id="foto" value="{{ old('foto') }}" class="form-control @error('name') is-invalid @enderror">
                         @error('foto')
-                        <div class="text-muted">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

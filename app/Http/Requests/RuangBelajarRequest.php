@@ -21,7 +21,6 @@ class RuangBelajarRequest extends FormRequest
     {
         return [
             'id_mapel' => 'required|numeric',
-            'id_guru' => 'required|numeric',
             'nama' => 'required|max:20',
             'kode' => 'required|max:6|unique:ruang_belajar,kode',
         ];

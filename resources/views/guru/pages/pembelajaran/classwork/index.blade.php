@@ -33,8 +33,8 @@
                                 <th scope="col">Mata pelajaran</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">judul</th>
-                                <th scope="col">deskripsi</th>
                                 <th scope="col">publish ?</th>
+                                <th scope="col"></th>
                                 <th scope="col">Option</th>
                             </tr>
                         </thead>
@@ -176,10 +176,10 @@
                     data: 'judul'
                 },
                 {
-                    data: 'deskripsi'
+                    data: 'publish'
                 },
                 {
-                    data: 'publish'
+                    data: 'penilaian'
                 },
                 {
                     data: 'action'

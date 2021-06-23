@@ -7,6 +7,8 @@
 @php
     $arr = explode('/',$item->file);
     $namaFile = $arr[1];
+
+    $enc = Crypt::encryptString($item->id_classwork);
 @endphp
 <section class="section">
 <div class="section-header text-capitalize">
@@ -62,7 +64,7 @@
                 <strong class="mx-auto">Nilai</strong>
             </div>
             <div class="card-body mx-auto">
-                <h1>100</h1>
+                <h1>{{ $item->classwork->nilai }}</h1>
             </div>
         </div>
     </div>
@@ -72,7 +74,7 @@
 </div>
 
 {{-- form upload --}}
-@if($item->jenis == 'tugas')
+@if($item->jenis == 'tugas' && $item->classwork->nilai == null)
 <div class="row justify-content-around text-capitalize">
     <div class="col-md-6">
         <div class="card card-dark">
@@ -80,8 +82,17 @@
                 <p class="font-weight-bold">Upload Tugas</p>
             </div>
             <div class="card-body">
-                <form action="" method="post">
-                    <input type="file" class="form-control" name="file" id="file">
+                <form action="{{ route('siswa-panel.classwork-siswa.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                    <input type="hidden" value="{{ $enc }}" name="id_classwork">
+                    <div class="form-group">
+                        <label for="file">file</label>
+                        <input type="file" name="file" id="file" class="form-control">
+                        <div class="text-muted">Upload dokumen format pdf, doc, docx, txt, dan ppt !</div>
+                        @error('file')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <button type="submit" class="btn btn-primary mt-4">Upload</button>
                 </form>
             </div>

@@ -30,3 +30,12 @@
 
 <script src="{{ asset('/assets/js/custom.js') }}"></script>
 
+<script>
+    $("a#generate").click(function(e) {
+        e.preventDefault();
+        const random = Math.random().toString(36).substr(2, 6)
+        $('input[name=kode]').val(random);
+    });
+</script>
+
+

@@ -19,8 +19,9 @@ class CreateClassworkSiswaTable extends Migration
             $table->timestamps();
             $table->foreignId('id_classwork')->nullable()->index('id_classwork_index');
             $table->foreignId('id_siswa')->Nullable()->index('id_siswa_index');
+            $table->date('tanggal');
             $table->string('file',50);
-            $table->integer('nilai');
+            $table->integer('nilai')->nullable();
         });
     }
 

@@ -147,7 +147,3 @@
         </div>
     </div>
 </div>
-
-{{-- modal upload classwork --}}
-
-{{-- akhir modal upload classwork --}}

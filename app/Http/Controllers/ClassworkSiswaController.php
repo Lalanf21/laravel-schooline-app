@@ -2,83 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassworkSiswaRequest;
+use App\Model\ClassworksiswaModel;
+use App\Model\SiswaModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ClassworkSiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function store(ClassworkSiswaRequest $request)
     {
-        //
+        $data = $request->all();
+        $fileName = $request->file('file')->getClientOriginalName();
+        
+        $data['id_classwork'] = Crypt::decryptString($request->id_classwork);
+        $data['file'] = $request->file('file')->storeAs('/classwork-siswa', $fileName, 'public');
+
+        $nisn = Auth()->user()->nisn;
+        $data['id_siswa'] = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
+        $data['tanggal'] = date('Y-m-d');
+
+        ClassworksiswaModel::create($data);
+
+        return redirect()->route('siswa-panel.siswaDashboard')->with('status', 'Tugas Berhasil di kirim !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function listPenilaian($id)
     {
-        //
+        $classworks = ClassworksiswaModel::where('id_classwork',$id)->with('siswa')->get();
+        return view('guru.pages.pembelajaran.classwork.listPenilaian', compact('classworks'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    
+    public function penilaian(Request $request)
     {
-        //
+        $item = ClassworksiswaModel::where([
+            ['id_classwork','=',$request->id_classwork],
+            ['id_siswa','=',$request->id_siswa],
+        ])->first();
+        
+        $item->update(['nilai'=>$request->nilai]);
+
+        return redirect()->back()->with('status', 'Nilai berhasil di simpan !');
     }
 }

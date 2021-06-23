@@ -11,7 +11,10 @@ use App\Model\RuangBelajarModel;
 use App\Model\RuangBelajarSiswaModel;
 use App\Model\SiswaModel;
 use Illuminate\Http\Request;
+
 use DataTables;
+use Illuminate\Support\Facades\Auth;
+
 class RuangBelajarController extends Controller
 {
     
@@ -39,10 +42,15 @@ class RuangBelajarController extends Controller
 
     public function store(RuangBelajarRequest $request)
     {
-        RuangBelajarModel::create($request->all());
+        
         if (Auth()->user()->getRoleNames() == '["admin"]') {
+            RuangBelajarModel::create($request->all());
             return redirect()->route('admin-panel.ruang-belajar.index')->with('status', 'Berhasil di Simpan !');
         }else{
+            $data = $request->all();
+            $nip = Auth()->user()->nisn;
+            $data['id_guru'] = GuruModel::where('nip', $nip)->first()->id_guru;
+            RuangBelajarModel::create($data);
             return redirect()->route('guru-panel.guruDashboard')->with('status', 'Berhasil Membuat ruang belajar !');
         }
     }
