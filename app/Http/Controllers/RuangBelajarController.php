@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RuangBelajarRequest;
+use App\Model\AbsensiModel;
+use App\Model\AbsensiSiswaModel;
 use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
@@ -145,6 +147,7 @@ class RuangBelajarController extends Controller
     {
         $nisn = Auth()->user()->nisn;
         $siswa = SiswaModel::where('nisn', $nisn)->get();
+        $id_siswa = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
         $ruang_belajar = RuangBelajarModel::where('id_ruang_belajar', $id)->with('mapel')->first();
         
         $friends = RuangBelajarSiswaModel::with('siswa')->where('id_ruang_belajar',$id)->get();
@@ -152,7 +155,10 @@ class RuangBelajarController extends Controller
             ['id_ruang_belajar','=',$id],
             ['is_publish','=','1']
         ])->get();
-        // dd($works);
-        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works'));
+        $listAbsens = AbsensiModel::where('id_ruang_belajar', $id)->get();
+        $historyAbsens = AbsensiSiswaModel::where('id_siswa',$id_siswa)->with('absensi')->get();
+
+        // dd($historyAbsen);
+        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works','listAbsens','historyAbsens'));
     }
 }

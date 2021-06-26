@@ -23,11 +23,8 @@ class MapelController extends Controller
     public function tampil_mapel(Request $request)
     {
         $id_kelas = $request->id_kelas;
-        $session = session()->put('id_kelas', $id_kelas);
-
-        $guru = GuruModel::all();
-        $kelas = KelasModel::all();
-        return view('admin.pages.master-data.mapel.tampil-mapel', compact('kelas','guru'));
+        session()->put('id_kelas', $id_kelas);
+        return view('admin.pages.master-data.mapel.tampil-mapel');
     }
     
     public function store(MapelRequest $request)

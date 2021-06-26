@@ -16,6 +16,18 @@
         {{ $item->jenis }}
     </h1>
 </div>
+@if (session('status'))
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session('status') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>
+@endif
 <div class="row justify-content-around text-capitalize">
     <div class="col-md-6">
         <div class="card card-dark">
@@ -64,7 +76,11 @@
                 <strong class="mx-auto">Nilai</strong>
             </div>
             <div class="card-body mx-auto">
+            @if(isset($item->classwork->nilai))
                 <h1>{{ $item->classwork->nilai }}</h1>
+            @else
+                <h1> - </h1>
+            @endif
             </div>
         </div>
     </div>
@@ -74,7 +90,7 @@
 </div>
 
 {{-- form upload --}}
-@if($item->jenis == 'tugas' && $item->classwork->nilai == null)
+@if($item->jenis == 'tugas' && !isset($item->classwork->nilai))
 <div class="row justify-content-around text-capitalize">
     <div class="col-md-6">
         <div class="card card-dark">

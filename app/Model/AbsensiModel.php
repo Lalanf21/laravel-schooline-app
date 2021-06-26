@@ -8,14 +8,16 @@ class AbsensiModel extends Model
 {
     protected $fillable = [
         'id_ruang_belajar',
-        'id_siswa',
-        'file_surat',
         'tanggal_absen',
-        'keterangan',
         'created_at',
         'updated_at',
     ];
 
     protected $table = 'absensi';
     protected $primaryKey = 'id_absensi';
+
+    public function ruang_belajar()
+    {
+        return $this->belongsTo('\App\Model\RuangBelajarModel', 'id_ruang_belajar', 'id_ruang_belajar');
+    }
 }

@@ -129,13 +129,13 @@
                 @csrf
                 <div class="form-group">
                     <select class="form-control">
-                        <option>Hadir</option>
-                        <option>Sakit</option>
-                        <option>Ijin</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="sakit">Sakit</option>
+                        <option value="ijin">Ijin</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="file" name="bukti" class="form-control">
+                    <input type="file" name="file" class="form-control">
                     <i><small class="text-danger">* Upload surat keterangan jika ijin atau sakit</small></i>
                 </div>
         </div>

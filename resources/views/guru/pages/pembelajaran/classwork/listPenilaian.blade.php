@@ -49,7 +49,7 @@
                                     {{ $classwork->siswa->nama }}
                                 </td>
                                 <td>
-                                    @if($classwork->tanggal == date('Y-m-d'))
+                                    @if($classwork->deadline == date('Y-m-d'))
                                         <span class="badge badge-danger">Terlambat</span>
                                     @else
                                         <span class="badge badge-success">Tepat waktu</span>

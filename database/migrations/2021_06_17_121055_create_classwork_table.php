@@ -21,7 +21,7 @@ class CreateClassworkTable extends Migration
             $table->string('judul','30');
             $table->text('deskripsi');
             $table->date('deadline')->nullable();
-            $table->string('file',50);
+            $table->string('file');
             $table->date('tanggal');
             $table->string('is_publish', 1);
         });

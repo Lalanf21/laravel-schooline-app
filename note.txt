@@ -5,9 +5,10 @@ Daftar Fitur yang belum selesai
 3. Semua Master Data Pakai Fitur Print
 
 akun guru
-8786524215
-8786524211
-878652421
+878652421 = khodijah
+8786524211 = sarimin
+8786524215 = haririe
 
 siswa
+32165478 = nisa b
 987654321 = anisa s

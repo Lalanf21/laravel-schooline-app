@@ -72,9 +72,9 @@
                 <span>Absensi</span></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a class="nav-link" href="">Buat absensi
+                    <a class="nav-link" href="{{ route('guru-panel.absensi.create') }}">Buat absensi
                     </a>
-                    <a class="nav-link" href="">History absensi
+                    <a class="nav-link" href="{{ route('guru-panel.absensi.index') }}">History absensi
                     </a>
                 </li>
             </ul>

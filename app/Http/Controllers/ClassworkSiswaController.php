@@ -16,13 +16,6 @@ class ClassworkSiswaController extends Controller
         //
     }
 
-    
-    public function create()
-    {
-        //
-    }
-
-    
     public function store(ClassworkSiswaRequest $request)
     {
         $data = $request->all();
@@ -37,22 +30,9 @@ class ClassworkSiswaController extends Controller
 
         ClassworksiswaModel::create($data);
 
-        return redirect()->route('siswa-panel.siswaDashboard')->with('status', 'Tugas Berhasil di kirim !');
+        return redirect()->back()->with('status', 'Tugas Berhasil di kirim !');
     }
 
-    
-    public function show($id)
-    {
-        //
-    }
-
-    
-    public function edit($id)
-    {
-        //
-    }
-
-    
     public function listPenilaian($id)
     {
         $classworks = ClassworksiswaModel::where('id_classwork',$id)->with('siswa')->get();
