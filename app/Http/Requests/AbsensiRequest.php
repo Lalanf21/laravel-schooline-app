@@ -14,8 +14,8 @@ class AbsensiRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_ruang_belajar' => 'required',
-            'tanggal_absen' => 'required|date',
+            'keterangan' => 'required',
+            'file' => 'mimes:pdf,docx,doc',
         ];
     }
 
@@ -23,8 +23,7 @@ class AbsensiRequest extends FormRequest
     {
         return [
             'required' => 'Wajib di isi !',
-            'integer' => 'Wajib di isi !',
-            'date'  => 'Masukkan tanggal yang valid !',
+            'mimes' => 'Hanya boleh file pdf, doc, docx !',
         ];
     }
 }

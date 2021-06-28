@@ -1,15 +1,8 @@
 <table class="table table-hover">
-	<thead>
-		<tr>
-			<th width="20">No</th>
-			<th>Teman</th>
-			<th>Login Terakhir</th>
-		</tr>
-	</thead>
     <tbody>
     	@foreach($friends as $friend)
         <tr>
-            <td>1</td>
+            <td>{{ $loop->iteration }}</td>
             <td>
             	<li class="media">
 	                <img alt="image" class="mr-3 rounded-circle" width="50" src="{{asset('storage/'.$friend->siswa->foto)}}">
@@ -19,7 +12,6 @@
 	                </div>
 	              </li>
             </td>
-            <td>3 menit yang lalu</td>
         </tr>
         @endforeach
     </tbody>

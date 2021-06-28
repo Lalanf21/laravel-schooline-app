@@ -155,10 +155,11 @@ class RuangBelajarController extends Controller
             ['id_ruang_belajar','=',$id],
             ['is_publish','=','1']
         ])->get();
-        $listAbsens = AbsensiModel::where('id_ruang_belajar', $id)->get();
-        $historyAbsens = AbsensiSiswaModel::where('id_siswa',$id_siswa)->with('absensi')->get();
-
-        // dd($historyAbsen);
-        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works','listAbsens','historyAbsens'));
+        $absens = AbsensiModel::where([
+            ['id_ruang_belajar', '=', $id],
+            ['id_siswa', '=', $id_siswa]
+        ])->get();
+        // dd($absens);
+        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works','absens'));
     }
 }

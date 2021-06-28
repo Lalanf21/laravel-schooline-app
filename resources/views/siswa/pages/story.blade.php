@@ -4,10 +4,11 @@
         <tr>
             <td>{{ $work->tanggal }}</td>
             <td>
-            @if($work->jenis == 'tugas')
-                <span class="badge badge-danger">Tugas</span>
+            @if($work->jenis == 'materi')
+                <span class="badge badge-success">{{ $work->jenis }}</span>
             @else
-                <span class="badge badge-success">Materi</span>
+                <span class="badge badge-danger">{{ $work->jenis  }}</span>
+
             @endif
             </td>
             <td>{{ $work->judul }}</td>

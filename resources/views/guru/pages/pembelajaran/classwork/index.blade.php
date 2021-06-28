@@ -45,6 +45,7 @@
     </div>
 </section>
 
+{{-- modal add classwork --}}
 <div class="modal fade text-capitalize" tabindex="-1" role="dialog" id="uploadClasswork">
     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -70,6 +71,8 @@
                         <select name="jenis" id="jenis" class="form-control">
                             <option value="materi">Materi</option>
                             <option value="tugas">Tugas</option>
+                            <option value="uts">UTS</option>
+                            <option value="uas">UAS</option>
                         </select>
                         @error('jenis')
                         <div class="text-danger">{{ $message }}</div>
@@ -123,6 +126,7 @@
         </div>
     </div>
 </div>
+{{-- akhir modal add classwork --}}
 
 
 @endsection

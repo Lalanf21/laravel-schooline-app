@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Username / Password salah !!',
+    'failed' => 'NISN / Password salah !!',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

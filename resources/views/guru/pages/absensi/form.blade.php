@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Tambah absensi')
+@section('title','absensi')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
@@ -33,6 +33,13 @@
                             @endforeach
                         </select>
                         @error('id_ruang_belajar')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" name="tanggal" id="tanggal" class="form-control">
+                        @error('tanggal')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

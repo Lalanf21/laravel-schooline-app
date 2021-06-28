@@ -21,7 +21,7 @@ class ClassworkRequest extends FormRequest
     {
         return [
             'id_ruang_belajar' => 'required|integer',
-            'jenis' => 'required|in:tugas,materi',
+            'jenis' => 'required|in:tugas,materi,uas,uts',
             'judul' => 'required',
             'deskripsi' => 'required',
             'deadline' => 'required|date',

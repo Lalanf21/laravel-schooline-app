@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Data jurusan')
+@section('title','Data absensi siswa')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
@@ -30,9 +30,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tanggal absensi</th>
-                                <th scope="col">Ruang belajar</th>
-                                <th scope="col">kelas</th>
-                                <th scope="col"></th>
+                                <th scope="col">Nama siswa</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">File surat</th>
+                                <th scope="col">Option</th>
                             </tr>
                         </thead>
                     </table>
@@ -79,13 +80,18 @@
                     data: 'tanggal_absen'
                 }, 
                 {
-                    data: 'ruang_belajar.nama'
+                    data: 'siswa.nama'
                 }, 
                 {
-                    data: 'ruang_belajar.mapel.kelas.nama_kelas'
+                    data: 'keterangan'
                 }, 
                 {
                     data: 'open'
+                    , orderable: false
+                    , searchable: false
+                },
+                {
+                    data: 'edit'
                     , orderable: false
                     , searchable: false
                 }

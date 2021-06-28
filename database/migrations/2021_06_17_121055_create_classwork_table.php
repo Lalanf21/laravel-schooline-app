@@ -17,7 +17,7 @@ class CreateClassworkTable extends Migration
             $table->id('id_classwork');
             $table->timestamps();
             $table->foreignId('id_ruang_belajar')->index('id_ruang_belajar_index');
-            $table->enum('jenis',['tugas','materi']);
+            $table->enum('jenis',['tugas','materi','uas','uts']);
             $table->string('judul','30');
             $table->text('deskripsi');
             $table->date('deadline')->nullable();
