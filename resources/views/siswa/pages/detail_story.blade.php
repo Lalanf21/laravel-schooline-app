@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    @if($item->jenis == 'tugas')
+    @if($item->jenis == 'tugas' || 'uts' || 'uas')
     <div class="col-md-2">
         <div class="card card-success">
             <div class="card-header">
@@ -90,7 +90,7 @@
 </div>
 
 {{-- form upload --}}
-@if($item->jenis == 'tugas' && !isset($item->classwork->nilai))
+@if(($item->jenis == 'tugas' || 'uas' || 'uts') && !isset($item->classwork->nilai))
 <div class="row justify-content-around text-capitalize">
     <div class="col-md-6">
         <div class="card card-dark">

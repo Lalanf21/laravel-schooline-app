@@ -20,7 +20,12 @@
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
             @include('includes.navbar')
-            @include('includes.sidebar')
+            
+            @if(Auth()->user()->getRoleNames() == '["siswa"]')
+                @include('includes.sidebar-siswa')
+            @else
+                @include('includes.sidebar')
+            @endif
 
             {{-- main content --}}
             <div class="main-content">

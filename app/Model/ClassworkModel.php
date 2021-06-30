@@ -31,5 +31,10 @@ class ClassworkModel extends Model
     {
         return $this->hasOne('\App\Model\ClassworksiswaModel', 'id_classwork', 'id_classwork');
     }
+
+    public function siswa()
+    {
+        return $this->belongsToMany('\App\Model\SiswaModel', 'classwork_siswa', 'id_classwork', 'id_siswa');
+    }
     
 }

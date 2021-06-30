@@ -35,6 +35,7 @@
                                 <th scope="col">Ruang belajar</th>
                                 <th scope="col">Mata pelajaran</th>
                                 <th scope="col">Kelas</th>
+                                <th scope="col">T. Pertemuan</th>
                                 <th scope="col">Kode Kelas</th>
                                 <th scope="col">Option</th>
                             </tr>
@@ -97,6 +98,9 @@
                 },
                 {
                     data: 'mapel.kelas.nama_kelas'
+                },
+                {
+                    data: 'jumlah_pertemuan'
                 },
                 {
                     data: 'kode'

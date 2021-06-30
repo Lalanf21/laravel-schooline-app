@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title','Edit  Users')
+@section('title','Ubah foto')
 @section('content')
 <section class="section">
     <div class="card" style="width:100%;">
         <div class="card-body">
-            <h2 class="card-title" style="color: black;">Ubah sandi</h2>
+            <h2 class="card-title" style="color: black;">Ubah foto</h2>
             <hr>
         </div>
     </div>
@@ -20,7 +20,6 @@
         </div>
     </div>
     @endif
-    <a href="{{ route('admin-panel.dashboard') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Kembali</a>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -28,28 +27,28 @@
                     <h4>{{ $item->nama }}</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin-panel.proses-ubah-password',$item->id) }}">
+                @if(Auth()->user()->getRoleNames() == '["guru"]')
+                    <form method="POST" action="{{ route('proses-ubah-foto',$item->id_guru) }}" enctype="multipart/form-data">
+                @else
+                    <form method="POST" action="{{ route('proses-ubah-foto',$item->id_siswa) }}" enctype="multipart/form-data">
+                @endif
                         @method('put')
                         @csrf
-                        <div class="form-group">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="masukkan password baru" autofocus>
-
-                            @error('password')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <div class="hero">
+                            <div class="col-md-4 mx-auto bg-white">
+                                <img src="{{ asset('storage/'.$item->foto) }}" class="card-img-top rounded-circle img-responsive" alt="Foto {{ $item->nama }}">
+                            </div>
                         </div>
+
                         <div class="form-group">
-                            <input type="password" name="password_confirmation" id="password" class="form-control" placeholder="Konfirmasi password">
-
-
-                            @error('password')
+                            <input type="file" name="foto" id="foto" class="form-control">
+                            @error('foto')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-
                         </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-warning">Ubah sandi <i class="fas fa-key"></i></button>
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-user-edit"></i> Ubah foto</button>
                 </div>
                 </form>
             </div>

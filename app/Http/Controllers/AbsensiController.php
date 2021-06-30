@@ -54,7 +54,7 @@ class AbsensiController extends Controller
             $data['tanggal_absen'] = date('Y-m-d');
         }
 
-        $cek = AbsensiModel::where($request->except('_token'))->first();
+        $cek = AbsensiModel::where('tanggal_absen',$data['tanggal_absen'])->first();
         if ($cek) {
             return redirect()->back()->with('status', 'Anda sudah absen hari ini !');
         }else{

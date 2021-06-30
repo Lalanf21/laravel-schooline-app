@@ -34,8 +34,6 @@ Route::resource('mapel-guru', 'MapelGuruController');
 
 // route users
 Route::get('/users/list', 'UsersController@list_users')->name('list-users');
-Route::get('/ubah-password/{id}/edit', 'UsersController@ubah_password')->name('ubah-password');
-Route::put('/ubah-password/{id}', 'UsersController@proses_password')->name('proses-ubah-password');
 Route::post('/users/{nisn}', 'UsersController@get_nisn');
 Route::resource('users', 'UsersController');
 

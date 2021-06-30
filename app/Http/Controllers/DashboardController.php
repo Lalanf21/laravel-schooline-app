@@ -24,24 +24,28 @@ class DashboardController extends Controller
         $guru = GuruModel::where('is_active',1)->count();
         $user = User::count();
 
-        $data = [
+        $components = [
             'siswa'=>$siswa,
             'guru'=>$guru,
             'user'=>$user,
         ];
-        return view('admin.pages.dashboard', $data);
+        return view('admin.pages.dashboard', $components);
     }
 
     public function siswaDashboard()
     {
         $nisn = Auth()->user()->nisn;
-        $siswa = SiswaModel::where('nisn', $nisn)->get();
+        $siswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->first();
+        // dd($siswa);
+        session()->put('foto', $siswa->foto);
         return view('siswa.pages.dashboard', compact('siswa'));
     }
 
     public function guruDashboard()
     {
         $nip = Auth()->user()->nisn;
+        $guru = GuruModel::where('nip',$nip)->first();
+        session()->put('foto', $guru->foto);
         $id_guru = GuruModel::where('nip',$nip)->first()->id_guru;
         $mapel = MapelGuruModel::where('id_guru',$id_guru)->with('mapel')->get();
         

@@ -13,6 +13,11 @@ Route::resource('classwork-siswa','ClassworkSiswaController');
 
 Route::post('/absensi', 'AbsensiController@store')->name('absensi-siswa');
 
+Route::get('/nilai', 'NilaiController@index')->name('nilai.index');
+Route::post('/lihat-nilai', 'NilaiController@proses')->name('proses-nilai');
+
+
+
 
 
 ?>

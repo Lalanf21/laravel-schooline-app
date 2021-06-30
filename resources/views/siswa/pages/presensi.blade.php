@@ -1,5 +1,5 @@
 <a href="" data-toggle="modal" data-target="#modalPresensi" class="btn btn-outline-primary my-3">
-    <i class="fas fa-list"></i>
+    Isi absen <i class="fas fa-calendar-check"></i> 
 </a>
 <table class="table table-hover table-striped">
 	<thead>
@@ -10,15 +10,23 @@
 		</tr>
 	</thead>
     <tbody>
-        @foreach($absens as $absen)  
+        @forelse($absens as $absen)  
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $absen->tanggal_absen }}</td>
             <td>
-                <span class="badge badge-success">{{ $absen->keterangan }}</span>
+            @if($absen->keterangan == 'alfa')
+                <span class="badge badge-danger">{{ $absen->keterangan }}</span>
+            @else
+                <span class="badge badge-primary">{{ $absen->keterangan }}</span>
+            @endif
             </td>
         </tr>
-        @endforeach
+        @empty
+            <tr align="center">
+                <td colspan=3>Tidak ada data absen !</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 

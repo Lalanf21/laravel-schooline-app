@@ -38,8 +38,13 @@ class SiswaModel extends Model
         return $this->belongsToMany('\App\Model\RuangBelajarModel','ruang_belajar_siswa','id_siswa','id_ruang_belajar');
     }
 
-    public function ruang_belajar_siswa()
+    public function classwork()
     {
-        return $this->hasMany('\App\Model\RuangBelajarSiswaModel','id_siswa','id_siswa');
+        return $this->belongsToMany('\App\Model\ClassworkModel','classwork_siswa','id_siswa','id_classwork');
     }
+
+    // public function ruang_belajar_siswa()
+    // {
+    //     return $this->hasMany('\App\Model\RuangBelajarSiswaModel','id_siswa','id_siswa');
+    // }
 }

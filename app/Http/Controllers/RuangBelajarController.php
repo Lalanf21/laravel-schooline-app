@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RuangBelajarRequest;
 use App\Model\AbsensiModel;
-use App\Model\AbsensiSiswaModel;
 use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
@@ -13,9 +12,7 @@ use App\Model\RuangBelajarModel;
 use App\Model\RuangBelajarSiswaModel;
 use App\Model\SiswaModel;
 use Illuminate\Http\Request;
-
 use DataTables;
-use Illuminate\Support\Facades\Auth;
 
 class RuangBelajarController extends Controller
 {
@@ -55,11 +52,6 @@ class RuangBelajarController extends Controller
             RuangBelajarModel::create($data);
             return redirect()->route('guru-panel.guruDashboard')->with('status', 'Berhasil Membuat ruang belajar !');
         }
-    }
-
-    public function show($id)
-    {
-        
     }
 
     public function edit($id)
@@ -146,7 +138,6 @@ class RuangBelajarController extends Controller
     public function ruangSiswa($id)
     {
         $nisn = Auth()->user()->nisn;
-        $siswa = SiswaModel::where('nisn', $nisn)->get();
         $id_siswa = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
         $ruang_belajar = RuangBelajarModel::where('id_ruang_belajar', $id)->with('mapel')->first();
         
@@ -159,7 +150,13 @@ class RuangBelajarController extends Controller
             ['id_ruang_belajar', '=', $id],
             ['id_siswa', '=', $id_siswa]
         ])->get();
-        // dd($absens);
-        return view('siswa.pages.ruang_belajar', compact('siswa','friends','ruang_belajar','works','absens'));
+
+        $components = [
+            'absens'=>$absens,
+            'works'=>$works,
+            'friends'=>$friends,
+            'ruang_belajar'=>$ruang_belajar,
+        ];
+        return view('siswa.pages.ruang_belajar', $components);
     }
 }

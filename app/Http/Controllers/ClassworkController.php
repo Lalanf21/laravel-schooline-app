@@ -43,9 +43,8 @@ class ClassworkController extends Controller
     public function show($id)
     {
         $nisn = Auth()->user()->nisn;
-        $siswa = SiswaModel::where('nisn', $nisn)->get();
         $item = ClassworkModel::where('id_classwork',$id)->with('classwork')->first();
-        return view ('siswa.pages.detail_story',compact('item','siswa'));
+        return view ('siswa.pages.detail_story',compact('item'));
     }
 
     public function edit($id)

@@ -57,8 +57,17 @@
                         <div class="row">
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
+                                    <label for="jumlah_pertemuan">T Pertemuan*</label>
+                                    <input id="jumlah_pertemuan" type="number" name="jumlah_pertemuan" value="{{ old('jumlah_pertemuan') }}" class="form-control @error('jumlah_pertemuan') is-invalid @enderror">
+                                    @error('jumlah_pertemuan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="form-group">
                                     <label for="kode">kode</label>
-                                    <input id="kode" type="text" name="kode" value="{{ old('kode') }}" class="form-control @error('kode') is-invalid @enderror" readonly>
+                                    <input type="text" name="kode" value="{{ old('kode') }}" class="form-control @error('kode') is-invalid @enderror" readonly>
                                     @error('kode')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -67,6 +76,7 @@
                             <div class="col-6 mt-3 p-3">
                                 <a id="generate" href="" class="btn btn-primary ">Generate</a>
                             </div>
+                            <div class="text-danger mb-3">*) Total pertemuan dalam satu semester </div>
                         </div>
 
                         <div class="form-group">

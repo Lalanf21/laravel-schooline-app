@@ -11,6 +11,7 @@ class RuangBelajarModel extends Model
         'id_guru',
         'nama',
         'kode',
+        'jumlah_pertemuan',
         'created_at',
         'updated_at',
     ];
@@ -33,8 +34,4 @@ class RuangBelajarModel extends Model
         return $this->belongsTo('\App\Model\GuruModel','id_guru','id_guru');
     }
 
-    public function ruang_belajar()
-    {
-        return $this->belongsToMany('\App\Model\RuangBelajarModel', 'ruang_belajar','id_ruang_belajar','id_siswa');
-    }
 }
