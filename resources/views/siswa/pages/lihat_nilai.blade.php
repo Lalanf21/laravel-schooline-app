@@ -10,6 +10,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-12">
+    <a href="{{ route('siswa-panel.nilai.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fas fa-arrow-left"></i> Kembali</a>
         <div class="card">
             <div class="card-body text-capitalize">
                 <center>
@@ -56,8 +57,8 @@
                         </tr>
                     </table>
                 </center>
-                <a href="" class="btn btn-success btn-sm mb-2"><i class="fas fa-print"></i> Print</a>
-                <table class="table my-3 text-center">
+                <a href="{{ route('siswa-panel.download-nilai') }}" class="btn btn-success btn-sm mb-2"><i class="fas fa-print"></i> Print</a>
+                <table class="table table-hover table-striped my-3 text-center">
                     <tr class="thead-dark text-uppercase">
                         <th>no</th>
                         <th>Penilaian</th>
@@ -66,13 +67,15 @@
                     </tr>
                     <tr>
                         <td rowspan="2">1</td>
-                        <td >Absensi</td>
+                        <td rowspan="2">
+                            Absensi <br>
+                            (Kehadiran : {{ $total_absen }} dari {{ $jPertemuan }} Pertemuan)
+                        </td>
                         <td rowspan="2">10 %</td>
                         <td rowspan="2">{{ $nilaiAbsen }}</td>
                     </tr>
                     <tr>
-                        <td>Kehadiran : {{ $total_absen }} dari {{ $jPertemuan }} Pertemuan </td>
-                    <tr>
+                    </tr>
                         <td>2</td>
                         <td>tugas</td>
                         <td>20 %</td>

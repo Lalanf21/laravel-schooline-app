@@ -40,8 +40,6 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin-panel.ruang-belajar.index') }}">Ruang Belajar</a>
                     </li>
-                    <li><a class="nav-link" href="">Nilai</a>
-                    </li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -61,10 +59,11 @@
                 <span>Pembelajaran</span></a>
             <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('guru-panel.ruang-belajar.index') }}">Ruang Belajar</a>
-
                 </li>
                 <li><a class="nav-link" href="{{ route('guru-panel.classwork.index') }}">Classwork</a>
-                </li>   
+                </li>
+                {{-- <li><a class="nav-link" href="">Nilai</a>
+                </li> --}}
             </ul>
         </li>
         <li class="nav-item dropdown">

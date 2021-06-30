@@ -8,11 +8,14 @@ use App\Model\ClassworksiswaModel;
 use App\Model\RuangBelajarModel;
 use App\Model\SiswaModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use PDF;
 
 class NilaiController extends Controller
 {
     public function index()
     {
+        session()->pull('data');
         $nisn = Auth()->user()->nisn;
         $siswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->first();
         return view('siswa.pages.form_nilai', compact('siswa'));
@@ -81,9 +84,22 @@ class NilaiController extends Controller
             'nilaiTugas' => $nilaiTugas,
             'jumlah' => $jumlah,
         ];
-        // dd($siswa);
+        Session::put('data', $components);
+        return redirect()->route('siswa-panel.lihat-nilai');
+        
+    }
+    
+    public function tampil_nilai()
+    {
+        $components = Session::get('data');
         return view('siswa.pages.lihat_nilai', $components);
     }
 
+    public function download()
+    {
+        $components = Session::get('data');
+        $pdf = PDF::loadView('siswa.pages.download_nilai', $components);
+        return $pdf->download('nilai-siswa.pdf');
+    }
     
 }
