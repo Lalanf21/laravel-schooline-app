@@ -7,7 +7,6 @@ use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
 use App\Model\RuangBelajarModel;
-use App\Model\SiswaModel;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -15,17 +14,17 @@ class ClassworkController extends Controller
 {
     public function index()
     {
+        session()->get('id_ruang_belajar');
         $nip = Auth()->user()->nisn;
         $id_guru = GuruModel::where('nip', $nip)->first()->id_guru;
-        $mapel = MapelGuruModel::where('id_guru', $id_guru)->with('mapel')->get();
-        
         $ruang_belajar = RuangBelajarModel::where('id_guru', $id_guru)->with('mapel')->get();
-        return view('guru.pages.pembelajaran.classwork.index', compact('mapel','ruang_belajar'));
+        return view('guru.pages.pembelajaran.classwork.index', compact('ruang_belajar'));
     }
-    
-    public function create()
-    {
 
+    public function tampil_classwork(Request $request)
+    {
+        session()->put('id_ruang_belajar', $request->id_ruang_belajar);
+        return view('guru.pages.pembelajaran.classwork.tampil_classwork');
     }
 
     public function store(ClassworkRequest $request)
@@ -89,7 +88,8 @@ class ClassworkController extends Controller
 
     public function list()
     {
-        $item = ClassworkModel::with('ruang_belajar.mapel.kelas')->get();
+        $id = session()->get('id_ruang_belajar');
+        $item = ClassworkModel::with('ruang_belajar.mapel.kelas')->where('id_ruang_belajar', $id)->get();
         return DataTables::of($item)
             ->rawColumns(['action','penilaian'])
             ->addIndexColumn()

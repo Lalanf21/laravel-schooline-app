@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    {{ $ruang_belajar }}
+                    {{ $count_rb }}
                 </div>
             </div>
         </div>

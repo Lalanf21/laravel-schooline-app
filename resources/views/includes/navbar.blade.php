@@ -67,10 +67,9 @@
                 <form action="{{ route('guru-panel.ruang-belajar.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                    @if( isset($mapel) )
                         <select name="id_mapel" class="form-control">
                             <option value="#">-- Pilih Mata pelajaran --</option>
-                            @foreach($mapel as $item)
+                            @foreach(session()->get('mapel') as $item)
                             <option value="{{ $item->mapel->id_mapel }}">
                                 {{ $item->mapel->nama_mapel.' kelas '.$item->mapel->kelas->nama_kelas }}
                             </option>
@@ -79,7 +78,6 @@
                         @error('id_mapel')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    @endif
                     </div>
 
                     <div class="form-group">

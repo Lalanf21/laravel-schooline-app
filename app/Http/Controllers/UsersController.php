@@ -78,7 +78,7 @@ class UsersController extends Controller
 
     public function ubah_foto($id)
     {
-        if (Auth()->user()->getRoleNames() == '["guru"]') {
+        if (Auth()->user()->getRoleNames() == '["guru"]' || '["admin"]') {
             $item = GuruModel::where('nip',$id)->first();
         }else{
             $item = SiswaModel::where('nisn',$id)->first();
@@ -88,7 +88,7 @@ class UsersController extends Controller
 
     public function proses_foto(Request $request, $id)
     {
-        if (Auth()->user()->getRoleNames() == '["guru"]') {
+        if (Auth()->user()->getRoleNames() == '["guru"]' || '["admin"]') {
             $item = GuruModel::where('id_guru', $id)->first();
             $data['foto'] = $request->file('foto')->store('foto/guru', 'public');
         } else {

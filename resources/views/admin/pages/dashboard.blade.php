@@ -35,7 +35,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    {{ $guru }}
+                    {{ $count_guru }}
                 </div>
             </div>
         </div>

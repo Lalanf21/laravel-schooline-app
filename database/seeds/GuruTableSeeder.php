@@ -38,5 +38,14 @@ class GuruTableSeeder extends Seeder
             'is_active' => '1',
             'foto' => 'foto/user.jpg',
         ]);
+
+        guruModel::create([
+            'nama' => 'admin',
+            'nip' => '123123123',
+            'tgl_lahir' => '1998-01-03',
+            'no_hp' => '08123432123',
+            'is_active' => '1',
+            'foto' => 'foto/user.jpg',
+        ]);
     }
 }
