@@ -35,6 +35,9 @@ class AbsensiController extends Controller
     public function store(AbsensiRequest $request)
     {
         $data = $request->all();
+
+        $nisn = Auth()->user()->nisn;
+        $id_siswa = SiswaModel::where('nisn',$nisn)->first()->id_siswa;
         
         if ($request->has('id_siswa')) {
             $data['id_siswa'] = $request->id_siswa;
@@ -54,7 +57,11 @@ class AbsensiController extends Controller
             $data['tanggal_absen'] = date('Y-m-d');
         }
 
-        $cek = AbsensiModel::where('tanggal_absen',$data['tanggal_absen'])->first();
+        $cek = AbsensiModel::where([
+            ['id_siswa',$id_siswa],
+            ['tanggal_absen',$data['tanggal_absen']],
+        ])->first();
+
         if ($cek) {
             return redirect()->back()->with('status', 'Anda sudah absen hari ini !');
         }else{

@@ -69,15 +69,15 @@
         </div>
     </div>
 
-    @if($item->jenis == 'tugas' || 'uts' || 'uas')
+    @if($item->jenis == 'tugas' || 'uts' || 'uas' && empty($data))
     <div class="col-md-2">
         <div class="card card-success">
             <div class="card-header">
                 <strong class="mx-auto">Nilai</strong>
             </div>
             <div class="card-body mx-auto">
-            @if(isset($item->classwork->nilai))
-                <h1>{{ $item->classwork->nilai }}</h1>
+            @if( isset($data) )
+                <h1>{{ $data->nilai }}</h1>
             @else
                 <h1> - </h1>
             @endif
@@ -90,7 +90,7 @@
 </div>
 
 {{-- form upload --}}
-@if(($item->jenis == 'tugas' || 'uas' || 'uts') && !isset($item->classwork->nilai))
+@if(($item->jenis == 'tugas' || 'uas' || 'uts') && !isset($data))
 <div class="row justify-content-around text-capitalize">
     <div class="col-md-6">
         <div class="card card-dark">

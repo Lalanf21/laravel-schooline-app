@@ -37,7 +37,7 @@ class GuruRequest extends FormRequest
     {
         return [
             'required' => 'Wajib di isi !',
-            'max'  => 'Sudah Mencapai Maksimal Karakter !',
+            'max'  => 'Maksimal 12 karakter !',
             'integer'  => 'Hanya boleh di input angka !',
             'numeric'  => 'Hanya boleh di input angka !',
             'in'  => 'Pilih Option Dahulu !',

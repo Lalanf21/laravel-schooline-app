@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="no_hp">No HP</label>
-                    <input id="no_hp" type="text" name="no_hp" value="{{ old('no_hp') }}" class="form-control @error('no_hp') is-invalid @enderror">
+                    <input id="no_hp" type="text" name="no_hp" value="{{ old('no_hp') }}" class="form-control @error('no_hp') is-invalid @enderror" max="12">
                     @error('no_hp')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

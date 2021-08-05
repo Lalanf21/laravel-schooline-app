@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClassworkRequest;
+use App\Model\ClassworksiswaModel;
 use App\Model\ClassworkModel;
 use App\Model\GuruModel;
 use App\Model\MapelGuruModel;
 use App\Model\RuangBelajarModel;
+use App\Model\SiswaModel;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -42,8 +44,25 @@ class ClassworkController extends Controller
     public function show($id)
     {
         $nisn = Auth()->user()->nisn;
+        $id_siswa = SiswaModel::where('nisn',$nisn)->first()->id_siswa;
+
         $item = ClassworkModel::where('id_classwork',$id)->with('classwork')->first();
-        return view ('siswa.pages.detail_story',compact('item'));
+
+        $data = ClassworksiswaModel::where([
+            ['id_classwork', '=', $id],
+            ['id_siswa', '=', $id_siswa],
+        ])->first();
+
+        // dd($data);
+        if ($data === null) {
+            return view ('siswa.pages.detail_story',compact('item'));
+        }else{
+            return view ('siswa.pages.detail_story',compact('item','data'));
+        }
+        
+
+
+
     }
 
     public function edit($id)
