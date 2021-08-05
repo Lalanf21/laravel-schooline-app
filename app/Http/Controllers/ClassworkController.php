@@ -36,7 +36,7 @@ class ClassworkController extends Controller
         
         ClassworkModel::create($data);
 
-        return redirect()->route('guru-panel.classwork.index')->with('status', 'Classwork Berhasil di Simpan !');
+        return back()->with('status', 'Classwork Berhasil di Simpan !');
     }
 
     public function show($id)

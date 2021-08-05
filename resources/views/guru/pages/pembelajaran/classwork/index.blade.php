@@ -22,7 +22,7 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="{{ route('guru-panel.tampil-classwork') }}" method="post">
+            <form action="{{ route('guru-panel.tampil-classwork') }}" method="get">
                 @csrf
                 <div class="form-group">
                     <label for="ruang_belajar">ruang belajar</label>

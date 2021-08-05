@@ -23,7 +23,9 @@
 @endif
 
 <div class="row sortable-card">
-    @foreach($siswa->ruang_belajar as $rb)
+@foreach($siswa as $value)
+    
+    @foreach($value->ruang_belajar as $rb)
     <div class="col-12 col-md-6 col-lg-3" style="position: relative; opacity: 1; left: 0px; top: 0px;">
         <div class="card card-success">
             <div class="card-header ui-sortable-handle">
@@ -38,6 +40,7 @@
         </div>
     </div>
     @endforeach
+@endforeach
 </div>
 
 @endsection

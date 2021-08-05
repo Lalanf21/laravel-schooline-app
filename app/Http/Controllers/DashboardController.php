@@ -36,9 +36,10 @@ class DashboardController extends Controller
     public function siswaDashboard()
     {
         $nisn = Auth()->user()->nisn;
-        $siswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->first()->foto;
-        // dd($siswa);
-        session()->put('foto', $siswa);
+        $fotoSiswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->first()->foto;
+        $siswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->get();
+        // dd($siswa->ruang_belajar);
+        session()->put('foto', $fotoSiswa);
         return view('siswa.pages.dashboard', compact('siswa'));
     }
 

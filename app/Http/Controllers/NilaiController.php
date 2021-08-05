@@ -18,6 +18,7 @@ class NilaiController extends Controller
         session()->pull('data');
         $nisn = Auth()->user()->nisn;
         $siswa = SiswaModel::where('nisn', $nisn)->with('ruang_belajar')->first();
+        $id_siswa = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
         return view('siswa.pages.form_nilai', compact('siswa'));
     }
 
@@ -26,54 +27,69 @@ class NilaiController extends Controller
         $nisn = Auth()->user()->nisn;
         $id_siswa = SiswaModel::where('nisn', $nisn)->first()->id_siswa;
         $jPertemuan = RuangBelajarModel::where('id_ruang_belajar', $request->id_ruang_belajar)->first()->jumlah_pertemuan;
-        
+        $id_rb = $request->id_ruang_belajar;
+        ;
         // get absen
         $total_absen = AbsensiModel::where([
-            ['id_ruang_belajar','=', $request->id_ruang_belajar],
-            ['id_siswa','=', $id_siswa],
-            ['keterangan','=','hadir'],
+            ['id_ruang_belajar', '=', $request->id_ruang_belajar],
+            ['id_siswa', '=', $id_siswa],
+            ['keterangan', '=', 'hadir'],
         ])->count();
-        
-        // get nilai tugas
-        $tugas = ClassworksiswaModel::whereHas('classwork', function ($query) {
-            $query->where([
-                ['jenis','=', 'tugas'],
-                ['id_ruang_belajar','=', 1],
-            ]);
-        })->where('id_siswa',1)->get();
-
-        // get nilai uts
-        $uts = ClassworksiswaModel::whereHas('classwork', function ($query) {
-            $query->where([
-                ['jenis','=', 'uts'],
-                ['id_ruang_belajar','=', 1],
-            ]);
-        })->where('id_siswa',1)->first()->nilai;
-
-        // get nilai uas
-        $uas = ClassworksiswaModel::whereHas('classwork', function ($query) {
-            $query->where([
-                ['jenis','=', 'uas'],
-                ['id_ruang_belajar','=', 1],
-            ]);
-        })->where('id_siswa',1)->first()->nilai;
-
         // hitung total nilai absensi
         $nilaiAbsen = ($total_absen / $jPertemuan * 10 / 100) * 100;
-        $nilaiUts = $uts * 30 / 100;
-        $nilaiUas = $uas * 40 / 100;
 
+        // get nilai tugas
+        $tugas = ClassworksiswaModel::whereHas('classwork', function ($query)  use($id_rb){
+            $query->where([
+                ['jenis', '=', 'tugas'],
+                ['id_ruang_belajar', '=', $id_rb],
+            ]);
+        })->where('id_siswa', $id_siswa)->get();
+        
         // hitung total nilai tugas
-        $Ttugas = 0;
-        $i = 0;
-        foreach ($tugas as $item) {
-            $Ttugas += $item->nilai;
-            $i++;
+        if ($tugas->isEmpty()) {
+            $nilaiTugas = 0;
+        }else{
+            $Ttugas = 0;
+            $i = 0;
+            foreach ($tugas as $item) {
+                $Ttugas += $item->nilai;
+                $i++;
+            }
+            $nilaiTugas = ($Ttugas / $i) * 20 / 100;
         }
-        $nilaiTugas = ($Ttugas / $i) * 20 / 100;
+        
+        // get nilai uts dan hitung total nilainya
+        $uts = ClassworksiswaModel::whereHas('classwork', function ($query)  use($id_rb) {
+            $query->where([
+                ['jenis', '=', 'uts'],
+                ['id_ruang_belajar', '=', $id_rb],
+            ]);
+        })->where('id_siswa', $id_siswa)->first();
+        if ($uts === null) {
+            $nilaiUts = 0;
+        }else{
+            $nilaiUts = $uts->nilai * 30 / 100;
+        }
+        
+        // get nilai uas dan hitung total nilainya
+        $uas = ClassworksiswaModel::whereHas('classwork', function ($query) use($id_rb){
+            $query->where([
+                ['jenis', '=', 'uas'],
+                ['id_ruang_belajar', '=', $id_rb],
+            ]);
+        })->where('id_siswa', $id_siswa)->first();
+        if ($uts === null) {
+            $nilaiUas = 0;
+        } else {
+            $nilaiUas = $uas->nilai * 40 / 100;
+        }
 
+        // jumlahkan semua nilai
         $jumlah = round($nilaiAbsen + $nilaiTugas + $nilaiUts + $nilaiUas);
         $siswa = SiswaModel::where('id_siswa', $id_siswa)->first();
+
+        // kirim data dan masukkan kedalam session
         $components = [
             'siswa' => $siswa,
             'total_absen' => $total_absen,
@@ -86,9 +102,8 @@ class NilaiController extends Controller
         ];
         Session::put('data', $components);
         return redirect()->route('siswa-panel.lihat-nilai');
-        
     }
-    
+
     public function tampil_nilai()
     {
         $components = Session::get('data');
@@ -101,5 +116,4 @@ class NilaiController extends Controller
         $pdf = PDF::loadView('siswa.pages.download_nilai', $components);
         return $pdf->download('nilai-siswa.pdf');
     }
-    
 }
