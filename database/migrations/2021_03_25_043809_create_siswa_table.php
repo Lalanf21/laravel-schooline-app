@@ -15,6 +15,7 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id('id_siswa');
+            $table->softDeletes();
             $table->timestamps();
             $table->foreignId('id_jurusan')->nullable()->index('id_jurusan_index');
             $table->foreignId('id_kelas')->nullable()->index('id_kelas_index');

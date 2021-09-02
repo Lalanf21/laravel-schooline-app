@@ -35,9 +35,6 @@ class AbsensiController extends Controller
     public function store(AbsensiRequest $request)
     {
         $data = $request->all();
-
-        $nisn = Auth()->user()->nisn;
-        $id_siswa = SiswaModel::where('nisn',$nisn)->first()->id_siswa;
         
         if ($request->has('id_siswa')) {
             $data['id_siswa'] = $request->id_siswa;
@@ -58,7 +55,7 @@ class AbsensiController extends Controller
         }
 
         $cek = AbsensiModel::where([
-            ['id_siswa',$id_siswa],
+            ['id_siswa', $data['id_siswa']],
             ['tanggal_absen',$data['tanggal_absen']],
         ])->first();
 
@@ -113,7 +110,11 @@ class AbsensiController extends Controller
         ->rawColumns(['open','edit'])
         ->addIndexColumn()
         ->addColumn('open', function($item){
-            return '<a href="'.Storage::url($item->file).'" class="btn btn-light"><i class="fas fa-download"></i></a>';
+            if ($item->file == null) {
+                return '-';
+            }else{
+                return '<a href="'.Storage::url($item->file).'" class="btn btn-light"><i class="fas fa-download"></i></a>';
+            }
         })
         ->addColumn('edit', function($item){
             return '<a href="/guru-panel/absensi/' . $item->id_absensi . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Edit</a>';

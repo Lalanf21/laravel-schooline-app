@@ -27,7 +27,7 @@
                     <h4>{{ $item->nama }}</h4>
                 </div>
                 <div class="card-body">
-                @if(Auth()->user()->getRoleNames() == '["guru"]' || '["admin"]')
+                @if(Auth()->user()->getRoleNames() == '["guru"]' || Auth()->user()->getRoleNames() == '["admin"]' )
                     <form method="POST" action="{{ route('proses-ubah-foto',$item->id_guru) }}" enctype="multipart/form-data">
                 @else
                     <form method="POST" action="{{ route('proses-ubah-foto',$item->id_siswa) }}" enctype="multipart/form-data">

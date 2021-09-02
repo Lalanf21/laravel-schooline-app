@@ -68,7 +68,7 @@
             </div>
             <div class="card-wrap">
                 <div class="card-header">
-                    <a href="{{ route('admin-panel.users.index') }}">
+                    <a href="{{ route('guru-panel.absensi.index') }}">
                         <h4>Absensi</h4>
                     </a>
                 </div>
