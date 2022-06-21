@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-6 col-md-3">
                                 <div class="form-group">
-                                    <label for="jumlah_pertemuan">T Pertemuan*</label>
+                                    <label for="jumlah_pertemuan">Pertemuan*</label>
                                     <input id="jumlah_pertemuan" type="number" name="jumlah_pertemuan" value="{{ old('jumlah_pertemuan') }}" class="form-control @error('jumlah_pertemuan') is-invalid @enderror">
                                     @error('jumlah_pertemuan')
                                     <div class="text-danger">{{ $message }}</div>

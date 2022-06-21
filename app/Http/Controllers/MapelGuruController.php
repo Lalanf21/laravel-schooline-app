@@ -81,10 +81,10 @@ class MapelGuruController extends Controller
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->addColumn('action', function ($item) {
-                $action = '<a href="/admin-panel/mapel-guru/' . $item->id . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i> Edit</a>';
+                $action = '<a href="/admin-panel/mapel-guru/' . $item->id . '/edit" class="btn btn-warning btn-sm"> <i class="fas fa-edit"></i></a>';
                 $action .= ' ||<form action="/admin-panel/mapel-guru/' . $item->id . '" method="post" class="d-inline">'
                 . csrf_field() . method_field("delete") . '
-                <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button></form>';
+                <button onclick="return confirm(\'Anda yakin ?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></form>';
                 return $action;
             })->make(true);
     }

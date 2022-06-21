@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
     <a href="{{ route('admin-panel.mapel.index') }}" class="btn btn-primary mb-4"><i class="fas fa-arrow-left"></i> Kembali</a> 
             <div class="container bg-white p-4" style="border-radius:3px;box-shadow:rgba(0, 0, 0, 0.03) 0px 4px 8px 0px">
             <div class="card-header">
