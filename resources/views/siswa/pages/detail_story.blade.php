@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    @if($item->jenis != 'materi' && empty($data))
+    @if($item->jenis != 'materi' && !empty($data))
     <div class="col-md-2">
         <div class="card card-success">
             <div class="card-header">
